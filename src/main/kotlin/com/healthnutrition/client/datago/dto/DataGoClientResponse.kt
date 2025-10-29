@@ -4,13 +4,17 @@ import com.fasterxml.jackson.annotation.JsonProperty
 
 class DataGoClientResponse {
     data class FoodNutrition(
-        val items: List<FoodNutritionItem>,
+        @JsonProperty("body") val body: FoodNutritionBody
+    )
+
+    data class FoodNutritionBody(
+        @JsonProperty("items") val items: List<FoodNutritionBodyItem>,
         @JsonProperty("numOfRows") val numOfRows: String, // 한 페이지 결과수
         @JsonProperty("pageNo") val page: String, // 페이지 번호
         @JsonProperty("totalCount") val totalCount: String // 전체 결과 수
     )
 
-    data class FoodNutritionItem(
+    data class FoodNutritionBodyItem(
         @JsonProperty("FOOD_CD") val foodCode: String, // 식품코드
         @JsonProperty("FOOD_NM_KR") val foodName: String, // 식품명
         @JsonProperty("DB_GRP_CM") val foodGroupCode: String, // 데이터구분코드

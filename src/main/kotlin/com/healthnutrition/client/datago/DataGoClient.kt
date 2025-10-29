@@ -25,7 +25,7 @@ class DataGoClient(
         foodNutritionRequest: DataGoClientRequest.FoodNutrition
     ): Mono<DataGoClientResponse.FoodNutrition> {
         return webClient.get()
-            .uri("$baseUrl/getFoodNtrCpntDbInq02/?serviceKey=$apiKey&pageNo=${foodNutritionRequest.page}&numOfRows=${foodNutritionRequest.numOfRows}&type=json&FOOD_NM_KR=${foodNutritionRequest.foodName}")
+            .uri("$baseUrl/getFoodNtrCpntDbInq02?serviceKey=$apiKey&pageNo=${foodNutritionRequest.page}&numOfRows=${foodNutritionRequest.numOfRows}&type=json&FOOD_NM_KR=${foodNutritionRequest.foodName}")
             .retrieve()
             .bodyToMono(DataGoClientResponse.FoodNutrition::class.java)
             .onErrorResume { exception ->
