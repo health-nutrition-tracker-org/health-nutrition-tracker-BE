@@ -11,10 +11,10 @@
 
 | 구분 | 기술 |
 |------|------|
-| Language | **Kotlin v1.9.25** |
-| Framework | **Spring Boot v3.0.6** |
+| Language | **Kotlin v1.8.21** | 
+| Framework | **Spring Boot v3.0.6** | 
 | Database | **PostgreSQL v16** |
-| ORM | **Spring Data JPA (Hibernate)** |
+| ORM | **Spring Data JPA (Hibernate)** | 
 | API Docs | **Spring REST Docs** |
 | Build Tool | **Gradle (Groovy)** |
 | Test | **JUnit 5** |
