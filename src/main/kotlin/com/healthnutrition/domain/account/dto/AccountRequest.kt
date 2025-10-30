@@ -18,4 +18,9 @@ class AccountRequest {
 			}
 		}
 	}
+
+	data class SignIn(
+		val email: String,
+		val password: String
+	)
 }

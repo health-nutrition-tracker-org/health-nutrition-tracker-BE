@@ -21,4 +21,13 @@ class AccountService(
 
 		return AccountResponse.SignIn.from(account)
 	}
+
+	@Transactional
+	fun signIn(request: AccountRequest.SignIn): AccountResponse.SignIn {
+		val account = accountRepositoryService.getByEmailOrThrow(request.email)
+		account.verifyPassword(request.password)
+		account.updateLastSignIn()
+
+		return AccountResponse.SignIn.from(account)
+	}
 }
