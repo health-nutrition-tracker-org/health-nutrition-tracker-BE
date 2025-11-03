@@ -12,9 +12,9 @@ import org.springframework.test.web.servlet.MockMvc
 @ExtendWith(SpringExtension::class)
 @AutoConfigureRestDocs
 abstract class MockMvcTest {
-    @Autowired
-    protected lateinit var mockMvc: MockMvc
+	@Autowired
+	protected lateinit var mockMvc: MockMvc
 
-    @Autowired
-    protected open lateinit var objectMapper: ObjectMapper
+	@Autowired
+	protected open lateinit var objectMapper: ObjectMapper
 }
