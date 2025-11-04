@@ -7,5 +7,5 @@ import org.springframework.boot.runApplication
 class HealthNutritionTrackerBeApplication
 
 fun main(args: Array<String>) {
-    runApplication<HealthNutritionTrackerBeApplication>(*args)
+	runApplication<HealthNutritionTrackerBeApplication>(*args)
 }
