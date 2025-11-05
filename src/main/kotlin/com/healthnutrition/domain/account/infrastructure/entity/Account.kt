@@ -20,7 +20,7 @@ class Account(
 	@Convert(converter = ColumnEncryptConverter::class)
 	val password: String,
 
-	@Column("last_sign_in_at")
+	@Column(name = "last_sign_in_at")
 	var lastSignInAt: LocalDateTime? = null
 ) : BaseEntity() {
 	companion object {

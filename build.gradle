@@ -51,7 +51,9 @@ dependencies {
     testImplementation 'org.springframework.restdocs:spring-restdocs-asciidoctor'
     testImplementation 'org.springframework.restdocs:spring-restdocs-restassured'
     testImplementation 'io.rest-assured:spring-mock-mvc'
+    testImplementation 'com.h2database:h2'
     testImplementation 'org.springframework.security:spring-security-test'
+    testImplementation 'com.ninja-squad:springmockk:4.0.0'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
@@ -75,5 +77,30 @@ tasks.named('test') {
 
 tasks.named('asciidoctor') {
     inputs.dir snippetsDir
-    dependsOn test
+    dependsOn tasks.test
+    doLast {
+        copy {
+            from("build/docs/asciidoc")
+            into("src/main/resources/static/docs")
+        }
+    }
 }
+
+tasks.named('bootJar') {
+    enabled = true
+    dependsOn tasks.asciidoctor
+
+    from('build/docs/asciidoc') {
+        into 'BOOT-INF/classes/static/docs'
+        duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    }
+}
+
+tasks.named('jar') {
+    enabled = false
+}
+
+tasks.named('build') {
+    dependsOn tasks.bootJar
+}
+
