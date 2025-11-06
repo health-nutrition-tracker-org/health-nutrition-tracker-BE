@@ -42,6 +42,56 @@
 
 ---
 
+## 🗂️ 패키지 구조
+
+```
+└── com
+    └── healthnutrition
+        ├── account
+        │   ├── domain
+        │   │   └── exception
+        │   ├── infrastructure
+        │   │   ├── persistence
+        │   │   └── web
+        │   │       └── dto
+        │   └── usecase
+        │       └── dto
+        ├── auth
+        │   ├── domain
+        │   ├── infrastructure
+        │   │   ├── config
+        │   │   └── security
+        │   └── usecase
+        ├── bodymetric
+        │   ├── domain
+        │   │   └── exception
+        │   ├── infrastructure
+        │   │   ├── persistence
+        │   │   └── web
+        │   │       └── dto
+        │   └── usecase
+        │       └── dto
+        ├── food
+        │   ├── domain
+        │   │   └── exception
+        │   ├── infrastructure
+        │   │   ├── external
+        │   │   │   └── dto
+        │   │   ├── persistence
+        │   │   └── web
+        │   │       └── dto
+        │   └── usecase
+        │       └── dto
+        └── global
+            ├── domain
+            ├── infrastructure
+            │   ├── config
+            │   └── persistence
+            └── usecase
+```
+
+---
+
 ## 🗃️ ERD
 
 ```mermaid
