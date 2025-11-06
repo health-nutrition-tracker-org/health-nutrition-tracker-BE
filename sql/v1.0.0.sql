@@ -1,6 +1,6 @@
 CREATE SEQUENCE seq_id;
 
--- 계정 Table
+-- 계정
 CREATE TABLE account
 (
     id         BIGINT DEFAULT nextval('seq_id') CONSTRAINT account_pk PRIMARY KEY,
@@ -57,15 +57,15 @@ CREATE TABLE food_log
     account_id         BIGINT        NOT NULL,
     food_name          VARCHAR(100)  NOT NULL,
     serving_size       INTEGER,
-    kcal               NUMERIC(6, 2) NOT NULL,
-    carbohydrate       NUMERIC(6, 2) NOT NULL,
-    protein            NUMERIC(6, 2) NOT NULL,
-    fat                NUMERIC(6, 2) NOT NULL,
-    saturatedFattyAcid NUMERIC(6, 2),
-    transFattyAcid     NUMERIC(6, 2),
-    cholesterol        NUMERIC(6, 2) NOT NULL,
+    kcal               NUMERIC(7, 3) NOT NULL,
+    carbohydrate       NUMERIC(7, 3) NOT NULL,
+    protein            NUMERIC(7, 3) NOT NULL,
+    fat                NUMERIC(7, 3) NOT NULL,
+    saturatedFattyAcid NUMERIC(7, 3),
+    transFattyAcid     NUMERIC(7, 3),
+    cholesterol        NUMERIC(7, 3) NOT NULL,
     sodium             NUMERIC(7, 3) NOT NULL,
-    dietaryFiber       NUMERIC(6, 2),
+    dietaryFiber       NUMERIC(7, 3),
     meal_type          VARCHAR(20),
     created_at         TIMESTAMP
 );
