@@ -1,6 +1,6 @@
 package com.healthnutrition.account.domain
 
-import com.healthnutrition.account.exception.AccountInternalException
+import com.healthnutrition.account.domain.exception.AccountInternalException
 import java.time.LocalDateTime
 
 data class Account(

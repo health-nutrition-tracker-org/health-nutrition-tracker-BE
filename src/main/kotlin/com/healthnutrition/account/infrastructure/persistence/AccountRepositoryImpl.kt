@@ -1,7 +1,7 @@
 package com.healthnutrition.account.infrastructure.persistence
 
 import com.healthnutrition.account.domain.AccountRepository
-import com.healthnutrition.account.exception.AccountNotFoundException
+import com.healthnutrition.account.domain.exception.AccountNotFoundException
 import org.springframework.stereotype.Repository
 
 @Repository
