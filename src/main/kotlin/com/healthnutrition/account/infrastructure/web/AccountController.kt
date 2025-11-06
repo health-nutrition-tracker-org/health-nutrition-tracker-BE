@@ -1,8 +1,9 @@
-package com.healthnutrition.domain.account.controller
+package com.healthnutrition.account.infrastructure.web
 
-import com.healthnutrition.domain.account.dto.AccountRequest
-import com.healthnutrition.domain.account.dto.AccountResponse
-import com.healthnutrition.domain.account.service.AccountService
+import com.healthnutrition.account.infrastructure.web.dto.AccountRequest
+import com.healthnutrition.account.infrastructure.web.dto.AccountResponse
+import com.healthnutrition.account.usecase.AccountService
+import com.healthnutrition.account.usecase.dto.AccountDto
 import com.healthnutrition.security.jwt.JwtInfo
 import com.healthnutrition.security.jwt.JwtProvider
 import org.springframework.http.ResponseEntity
@@ -19,14 +20,30 @@ class AccountController(
 	fun signUp(
 		@RequestBody request: AccountRequest.SignUp
 	): ResponseEntity<AccountResponse.SignIn> {
-		return ResponseEntity.ok(accountService.signUp(request))
+		return ResponseEntity.ok(
+			AccountResponse.SignIn.from(
+				accountService.signUp(
+					AccountDto.SignUp(
+						email = request.email,
+						password = request.password
+					)
+				)
+			)
+		)
 	}
 
 	@PostMapping("v1/accounts/tokens")
 	fun signIn(
 		@RequestBody request: AccountRequest.SignIn
 	): ResponseEntity<JwtInfo> {
-		val signInResponse = accountService.signIn(request)
+		val signInResponse = AccountResponse.SignIn.from(
+			accountService.signIn(
+				AccountDto.SignIn(
+					email = request.email,
+					password = request.password
+				)
+			)
+		)
 		return ResponseEntity.ok(jwtProvider.issueToken(signInResponse))
 	}
 }

@@ -1,4 +1,4 @@
-package com.healthnutrition.domain.account.exception
+package com.healthnutrition.account.exception
 
 import org.springframework.boot.logging.LogLevel
 import org.springframework.http.HttpStatus
