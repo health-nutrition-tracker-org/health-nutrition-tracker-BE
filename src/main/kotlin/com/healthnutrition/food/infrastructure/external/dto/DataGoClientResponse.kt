@@ -1,4 +1,4 @@
-package com.healthnutrition.client.datago.dto
+package com.healthnutrition.food.infrastructure.external.dto
 
 import com.fasterxml.jackson.annotation.JsonProperty
 
