@@ -3,7 +3,6 @@ package com.healthnutrition.account.infrastructure.web
 import com.healthnutrition.account.infrastructure.web.dto.AccountRequest
 import com.healthnutrition.account.infrastructure.web.dto.AccountResponse
 import com.healthnutrition.account.usecase.AccountUseCase
-import com.healthnutrition.account.usecase.dto.AccountDto
 import com.healthnutrition.auth.domain.JwtInfo
 import com.healthnutrition.auth.usecase.JwtProvider
 import org.springframework.http.ResponseEntity
@@ -21,12 +20,9 @@ class AccountController(
 		@RequestBody request: AccountRequest.SignUp
 	): ResponseEntity<AccountResponse.SignIn> {
 		return ResponseEntity.ok(
-			AccountResponse.SignIn.from(
+			AccountWebMapper.toSignInResponse(
 				accountUseCase.signUp(
-					AccountDto.SignUp(
-						email = request.email,
-						password = request.password
-					)
+					AccountWebMapper.toSignUpDto(request)
 				)
 			)
 		)
@@ -36,12 +32,9 @@ class AccountController(
 	fun signIn(
 		@RequestBody request: AccountRequest.SignIn
 	): ResponseEntity<JwtInfo> {
-		val signInResponse = AccountResponse.SignIn.from(
+		val signInResponse = AccountWebMapper.toSignInResponse(
 			accountUseCase.signIn(
-				AccountDto.SignIn(
-					email = request.email,
-					password = request.password
-				)
+				AccountWebMapper.toSignInDto(request)
 			)
 		)
 		return ResponseEntity.ok(jwtProvider.issueToken(signInResponse))
