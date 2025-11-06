@@ -2,14 +2,14 @@ package com.healthnutrition.domain.account.service
 
 import com.healthnutrition.domain.account.dto.AccountRequest
 import com.healthnutrition.domain.account.dto.AccountResponse
-import com.healthnutrition.domain.account.infrastructure.AccountRepositoryService
 import com.healthnutrition.domain.account.infrastructure.entity.Account
+import com.healthnutrition.domain.account.service.repository.AccountRepository
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
 @Service
 class AccountService(
-	private val accountRepositoryService: AccountRepositoryService
+	private val accountRepositoryService: AccountRepository
 ) {
 	@Transactional
 	fun signUp(request: AccountRequest.SignUp): AccountResponse.SignIn {
