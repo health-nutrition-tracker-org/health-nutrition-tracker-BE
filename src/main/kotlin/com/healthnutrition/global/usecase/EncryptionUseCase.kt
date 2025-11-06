@@ -1,4 +1,4 @@
-package com.healthnutrition.global.encryption.service
+package com.healthnutrition.global.usecase
 
 import org.springframework.stereotype.Service
 import java.security.Key
@@ -7,7 +7,7 @@ import javax.crypto.Cipher
 import javax.crypto.spec.SecretKeySpec
 
 @Service
-class EncryptionService {
+class EncryptionUseCase {
 	private val encryptKey = "encryptkey1234"
 	private val algorithm = "AES"
 

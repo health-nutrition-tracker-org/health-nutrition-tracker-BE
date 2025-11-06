@@ -1,4 +1,4 @@
-package com.healthnutrition.global.config
+package com.healthnutrition.global.usecase
 
 import org.springframework.context.ApplicationContext
 import org.springframework.context.ApplicationContextAware

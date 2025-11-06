@@ -1,7 +1,7 @@
 package com.healthnutrition.account.infrastructure.persistence
 
-import com.healthnutrition.global.domain.BaseEntity
-import com.healthnutrition.global.encryption.converter.ColumnEncryptConverter
+import com.healthnutrition.global.infrastructure.persistence.BaseEntity
+import com.healthnutrition.global.infrastructure.persistence.ColumnEncryptConverter
 import jakarta.persistence.Column
 import jakarta.persistence.Convert
 import jakarta.persistence.Entity

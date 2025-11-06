@@ -1,4 +1,4 @@
-package com.healthnutrition.global.domain
+package com.healthnutrition.global.infrastructure.persistence
 
 import jakarta.persistence.Column
 import jakarta.persistence.EntityListeners
