@@ -1,6 +1,8 @@
-package com.healthnutrition.security.jwt
+package com.healthnutrition.auth.usecase
 
 import com.healthnutrition.account.infrastructure.web.dto.AccountResponse
+import com.healthnutrition.auth.domain.JwtClaim
+import com.healthnutrition.auth.domain.JwtInfo
 import com.healthnutrition.global.util.DateUtil
 import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.SignatureAlgorithm

@@ -2,12 +2,12 @@ package com.healthnutrition.account.infrastructure.web
 
 import com.healthnutrition.MockMvcTest
 import com.healthnutrition.account.infrastructure.web.dto.AccountRequest
-import com.healthnutrition.account.usecase.AccountService
+import com.healthnutrition.account.usecase.AccountUseCase
 import com.healthnutrition.account.usecase.dto.AccountDto
-import com.healthnutrition.security.config.SecurityConfig
-import com.healthnutrition.security.filter.JwtAuthFilter
-import com.healthnutrition.security.jwt.JwtInfo
-import com.healthnutrition.security.jwt.JwtProvider
+import com.healthnutrition.auth.domain.JwtInfo
+import com.healthnutrition.auth.infrastructure.config.SecurityConfig
+import com.healthnutrition.auth.infrastructure.security.JwtAuthFilter
+import com.healthnutrition.auth.usecase.JwtProvider
 import com.ninjasquad.springmockk.MockkBean
 import io.mockk.every
 import org.junit.jupiter.api.DisplayName
@@ -40,7 +40,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers
 )
 class AccountControllerTest : MockMvcTest() {
 	@MockkBean
-	private lateinit var accountService: AccountService
+	private lateinit var accountUseCase: AccountUseCase
 
 	@MockkBean
 	private lateinit var jwtProvider: JwtProvider
@@ -57,7 +57,7 @@ class AccountControllerTest : MockMvcTest() {
 			email = "abc@example.com"
 		)
 
-		every { accountService.signUp(request) } returns response
+		every { accountUseCase.signUp(request) } returns response
 
 		mockMvc.perform(
 			RestDocumentationRequestBuilders.post("/v1/accounts")
@@ -102,7 +102,7 @@ class AccountControllerTest : MockMvcTest() {
 			accessExpiredAt = "2023-04-12 10:00:25"
 		)
 
-		every { accountService.signIn(any()) } returns signInResponse
+		every { accountUseCase.signIn(any()) } returns signInResponse
 		every { jwtProvider.issueToken(any()) } returns response
 
 		mockMvc.perform(

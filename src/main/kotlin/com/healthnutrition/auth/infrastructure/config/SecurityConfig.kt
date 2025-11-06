@@ -1,6 +1,6 @@
-package com.healthnutrition.security.config
+package com.healthnutrition.auth.infrastructure.config
 
-import com.healthnutrition.security.filter.JwtAuthFilter
+import com.healthnutrition.auth.infrastructure.security.JwtAuthFilter
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity

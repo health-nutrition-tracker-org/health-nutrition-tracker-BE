@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
 @Service
-class AccountService(
+class AccountUseCase(
 	private val accountRepositoryService: AccountRepository
 ) {
 	@Transactional

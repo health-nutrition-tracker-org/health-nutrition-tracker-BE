@@ -1,4 +1,4 @@
-package com.healthnutrition.security.jwt
+package com.healthnutrition.auth.domain
 
 data class JwtInfo(
 	val access: String,

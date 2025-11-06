@@ -1,6 +1,6 @@
-package com.healthnutrition.security.filter
+package com.healthnutrition.auth.infrastructure.security
 
-import com.healthnutrition.security.jwt.JwtProvider
+import com.healthnutrition.auth.usecase.JwtProvider
 import jakarta.servlet.FilterChain
 import jakarta.servlet.http.HttpServletRequest
 import jakarta.servlet.http.HttpServletResponse
