@@ -53,21 +53,21 @@ COMMENT ON COLUMN body_metric.updated_at IS '수정일자';
 -- 음식 섭취 기록
 CREATE TABLE food_log
 (
-    id                 BIGINT DEFAULT nextval('seq_id') CONSTRAINT food_log_pk PRIMARY KEY,
-    account_id         BIGINT        NOT NULL,
-    food_name          VARCHAR(100)  NOT NULL,
-    serving_size       INTEGER,
-    kcal               NUMERIC(7, 3) NOT NULL,
-    carbohydrate       NUMERIC(7, 3) NOT NULL,
-    protein            NUMERIC(7, 3) NOT NULL,
-    fat                NUMERIC(7, 3) NOT NULL,
-    saturatedFattyAcid NUMERIC(7, 3),
-    transFattyAcid     NUMERIC(7, 3),
-    cholesterol        NUMERIC(7, 3) NOT NULL,
-    sodium             NUMERIC(7, 3) NOT NULL,
-    dietaryFiber       NUMERIC(7, 3),
-    meal_type          VARCHAR(20),
-    created_at         TIMESTAMP
+    id                   BIGINT DEFAULT nextval('seq_id') CONSTRAINT food_log_pk PRIMARY KEY,
+    account_id           BIGINT        NOT NULL,
+    food_name            VARCHAR(100)  NOT NULL,
+    serving_size         INTEGER,
+    kcal                 NUMERIC(7, 3) NOT NULL,
+    carbohydrate         NUMERIC(7, 3) NOT NULL,
+    protein              NUMERIC(7, 3) NOT NULL,
+    fat                  NUMERIC(7, 3) NOT NULL,
+    saturated_fatty_acid NUMERIC(7, 3),
+    trans_fatty_acid     NUMERIC(7, 3),
+    cholesterol          NUMERIC(7, 3) NOT NULL,
+    sodium               NUMERIC(7, 3) NOT NULL,
+    dietary_fiber        NUMERIC(7, 3),
+    meal_type            VARCHAR(20),
+    created_at           TIMESTAMP
 );
 
 COMMENT ON TABLE food_log IS '음식 섭취 기록';
