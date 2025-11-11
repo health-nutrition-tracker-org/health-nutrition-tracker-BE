@@ -123,6 +123,7 @@ erDiagram
         serving_size int "영양성분함량기준량 (g)"
         kcal numeric "열량 (kcal)"
         carbohydrate numeric "탄수화물 (g)"
+        sugar numeric "당류 (g)"
         protein numeric "단백질 (g)"
         fat numeric "지방 (g)"
         saturatedFattyAcid numeric "포화지방산 (g)"

@@ -23,7 +23,7 @@ class DataGoClientResponse {
         @JsonProperty("FOOD_CAT1_NM") val foodCategoryName: String, // 식품대분류명
         @JsonProperty("FOOD_REF_NM") val foodRepresentName: String, // 대표식품명
         @JsonProperty("FOOD_CAT2_NM") val foodMidCategoryName: String?, // 식품중분류명
-        @JsonProperty("SERVING_SIZE") val nutrientStandardAmount: String, // 영양성분함량기준량 (ex. 100g)
+        @JsonProperty("SERVING_SIZE") val servingSize: String, // 영양성분함량기준량 (ex. 100g)
         @JsonProperty("AMT_NUM1") val kcal: String, // 칼로리(kcal)
         @JsonProperty("AMT_NUM6") val carbohydrate: String, // 탄수화물(g)
         @JsonProperty("AMT_NUM7") val sugar: String, // 당류(g)

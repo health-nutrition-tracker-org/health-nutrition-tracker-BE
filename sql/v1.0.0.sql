@@ -59,6 +59,7 @@ CREATE TABLE food_log
     serving_size         INTEGER,
     kcal                 NUMERIC(7, 3) NOT NULL,
     carbohydrate         NUMERIC(7, 3) NOT NULL,
+    sugar                NUMERIC(7, 3) NOT NULL,
     protein              NUMERIC(7, 3) NOT NULL,
     fat                  NUMERIC(7, 3) NOT NULL,
     saturated_fatty_acid NUMERIC(7, 3),
