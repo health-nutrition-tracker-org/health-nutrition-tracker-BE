@@ -26,3 +26,10 @@ include::{snippets}/Account-Sign-In/http-request.adoc[]
 include::{snippets}/Account-Sign-In/request-fields.adoc[]
 include::{snippets}/Account-Sign-In/http-response.adoc[]
 include::{snippets}/Account-Sign-In/response-fields.adoc[]
+
+== 음식 API
+=== 음식 검색 API
+include::{snippets}/Search-Food/http-request.adoc[]
+include::{snippets}/Search-Food/query-parameters.adoc[]
+include::{snippets}/Search-Food/http-response.adoc[]
+include::{snippets}/Search-Food/response-fields.adoc[]
