@@ -20,4 +20,8 @@ class AccountEntity(
 
 	@Column(name = "last_sign_in_at")
 	var lastSignInAt: LocalDateTime? = null
-) : BaseEntity()
+) : BaseEntity() {
+	fun updateLastSignInAt(lastSignInAt: LocalDateTime?) {
+		this.lastSignInAt = lastSignInAt
+	}
+}
