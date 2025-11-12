@@ -29,7 +29,8 @@ class JwtProvider(
 		val refreshExp = Date(now.time + refreshTtlMs)
 
 		val baseClaims = mapOf(
-			"email" to accountResponse.email
+			"email" to accountResponse.email,
+			"role" to "ROLE_USER"
 		)
 
 		val access = Jwts.builder()
@@ -68,10 +69,12 @@ class JwtProvider(
 
 		val accountId = claimBody.subject.toLong()
 		val email = claimBody["email"].toString()
+		val role = claimBody["role"].toString()
 
 		return JwtClaim(
 			accountId = accountId,
-			email = email
+			email = email,
+			role = role
 		)
 	}
 }
