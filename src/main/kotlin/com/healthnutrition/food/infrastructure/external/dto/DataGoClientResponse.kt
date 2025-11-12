@@ -23,7 +23,7 @@ class DataGoClientResponse {
         @JsonProperty("FOOD_CAT1_NM") val foodCategoryName: String, // 식품대분류명
         @JsonProperty("FOOD_REF_NM") val foodRepresentName: String, // 대표식품명
         @JsonProperty("FOOD_CAT2_NM") val foodMidCategoryName: String?, // 식품중분류명
-        @JsonProperty("SERVING_SIZE") val nutrientStandardAmount: String, // 영양성분함량기준량 (ex. 100g)
+        @JsonProperty("SERVING_SIZE") val servingSize: String, // 영양성분함량기준량 (ex. 100g)
         @JsonProperty("AMT_NUM1") val kcal: String, // 칼로리(kcal)
         @JsonProperty("AMT_NUM6") val carbohydrate: String, // 탄수화물(g)
         @JsonProperty("AMT_NUM7") val sugar: String, // 당류(g)
@@ -34,5 +34,13 @@ class DataGoClientResponse {
         @JsonProperty("AMT_NUM23") val cholesterol: String, // 콜레스테롤(mg)
         @JsonProperty("AMT_NUM13") val sodium: String, // 나트륨(mg)
         @JsonProperty("AMT_NUM8") val dietaryFiber: String // 식이섬유(g)
-    )
+    ) {
+        fun fetchServingSize(): Int? {
+            // 문자열에서 숫자만 추출
+            val numberString = servingSize.filter { it.isDigit() }
+
+            // 숫자가 하나라도 있으면 Int로 변환, 없으면 null 반환
+            return numberString.toIntOrNull()
+        }
+    }
 }

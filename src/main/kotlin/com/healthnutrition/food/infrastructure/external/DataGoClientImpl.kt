@@ -1,5 +1,6 @@
 package com.healthnutrition.food.infrastructure.external
 
+import com.healthnutrition.food.domain.DataGoClient
 import com.healthnutrition.food.infrastructure.external.dto.DataGoClientRequest
 import com.healthnutrition.food.infrastructure.external.dto.DataGoClientResponse
 import org.slf4j.LoggerFactory
@@ -10,9 +11,9 @@ import org.springframework.web.reactive.function.client.WebClient
 import reactor.core.publisher.Mono
 
 @Component
-class DataGoClient(
+class DataGoClientImpl(
 	@Qualifier("dataGoWebClient") private val webClient: WebClient
-) {
+) : DataGoClient {
 	private val log = LoggerFactory.getLogger(javaClass)
 
 	@Value("\${webclient.data-go.base-url}")
@@ -21,7 +22,7 @@ class DataGoClient(
 	@Value("\${webclient.data-go.api-key}")
 	private lateinit var apiKey: String
 
-	fun getFoodNutritionInfo(
+	override fun getFoodNutritionInfo(
 		foodNutritionRequest: DataGoClientRequest.FoodNutrition
 	): Mono<DataGoClientResponse.FoodNutrition> {
 		return webClient.get()
