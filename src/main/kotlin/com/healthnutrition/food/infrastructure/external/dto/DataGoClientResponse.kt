@@ -34,5 +34,13 @@ class DataGoClientResponse {
         @JsonProperty("AMT_NUM23") val cholesterol: String, // 콜레스테롤(mg)
         @JsonProperty("AMT_NUM13") val sodium: String, // 나트륨(mg)
         @JsonProperty("AMT_NUM8") val dietaryFiber: String // 식이섬유(g)
-    )
+    ) {
+        fun fetchServingSize(): Int? {
+            // 문자열에서 숫자만 추출
+            val numberString = servingSize.filter { it.isDigit() }
+
+            // 숫자가 하나라도 있으면 Int로 변환, 없으면 null 반환
+            return numberString.toIntOrNull()
+        }
+    }
 }
