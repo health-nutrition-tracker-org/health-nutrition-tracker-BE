@@ -90,6 +90,18 @@
             └── usecase
 ```
 
+### domain
+- 핵심 비즈니스 규칙, 즉 "무엇을 해야 하는가?"을 기술하는 계층
+- 프레임워크 비의존 순수 Kotlin 객체로 구성
+
+### usecase
+- 트랜잭션, 권한, 감사, 멱등성을 다루는 계층
+- "언제 어떤 도메인을 호출하고, 어떤 저장소를 통해 영속화하는가"를 책임
+
+### infrastructure
+- 기술 세부사항 구현부
+- JPA/SQL/Mongo 등 저장소 구현, 외부 REST API, 메시징, Mapper (Domain ↔ Entity/DTO 변환)
+
 ---
 
 ## 🗃️ ERD
