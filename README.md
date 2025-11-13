@@ -90,6 +90,8 @@
             └── usecase
 ```
 
+<img width="224" height="687" alt="Image" src="https://github.com/user-attachments/assets/fccef2df-376b-4431-8663-5be11bf1377a" />
+
 ### domain
 - 핵심 비즈니스 규칙, 즉 "무엇을 해야 하는가?"을 기술하는 계층
 - 프레임워크 비의존 순수 Kotlin 객체로 구성
