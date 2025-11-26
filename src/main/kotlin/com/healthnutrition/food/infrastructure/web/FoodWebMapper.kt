@@ -42,6 +42,7 @@ object FoodWebMapper {
 				cholesterol = request.cholesterol,
 				sodium = request.sodium,
 				dietaryFiber = request.dietaryFiber,
+				intakeAmount = request.intakeAmount,
 				mealType = request.mealType
 			)
 		}

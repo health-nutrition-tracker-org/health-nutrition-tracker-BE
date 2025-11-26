@@ -68,6 +68,7 @@ CREATE TABLE food_log
     sodium               NUMERIC(7, 3) NOT NULL,
     dietary_fiber        NUMERIC(7, 3),
     meal_type            VARCHAR(20),
+    intake_amount        INTEGER,
     created_at           TIMESTAMP
 );
 
@@ -98,5 +99,7 @@ COMMENT ON COLUMN food_log.sodium IS '나트륨 (mg)';
 COMMENT ON COLUMN food_log.dietary_fiber IS '식이섬유 (g)';
 
 COMMENT ON COLUMN food_log.meal_type IS '식사유형';
+
+COMMENT ON COLUMN food_log.intake_amount IS '섭취량 (g)';
 
 COMMENT ON COLUMN food_log.created_at IS '생성일자';

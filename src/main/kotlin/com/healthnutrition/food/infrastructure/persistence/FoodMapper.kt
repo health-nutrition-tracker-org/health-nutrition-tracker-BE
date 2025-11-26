@@ -17,6 +17,7 @@ object FoodMapper {
 		cholesterol = dto.cholesterol,
 		sodium = dto.sodium,
 		dietaryFiber = dto.dietaryFiber,
+		intakeAmount = dto.intakeAmount,
 		mealType = dto.mealType
 	)
 }

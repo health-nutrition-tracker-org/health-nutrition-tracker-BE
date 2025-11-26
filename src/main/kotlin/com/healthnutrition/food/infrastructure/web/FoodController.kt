@@ -34,7 +34,10 @@ class FoodController(
 		@RequestAttribute accountId: Long,
 		@RequestBody request: FoodRequest.CreateLog
 	): ResponseEntity<Unit> {
-		foodUseCase.postFoodLogs(accountId, FoodWebMapper.toFoodLogCreateDtos(request))
+		foodUseCase.postFoodLogs(
+			accountId = accountId,
+			requests = FoodWebMapper.toFoodLogCreateDtos(request)
+		)
 		return ResponseEntity.ok().build()
 	}
 }

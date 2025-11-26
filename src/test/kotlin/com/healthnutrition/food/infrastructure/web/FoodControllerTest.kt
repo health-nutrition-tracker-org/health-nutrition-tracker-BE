@@ -155,6 +155,7 @@ class FoodControllerTest : MockMvcTest() {
 					cholesterol = BigDecimal.valueOf(0.2),
 					sodium = BigDecimal.valueOf(292.0),
 					dietaryFiber = BigDecimal.valueOf(0.3),
+					intakeAmount = 100,
 					mealType = MealType.LUNCH
 				)
 			)
@@ -188,6 +189,7 @@ class FoodControllerTest : MockMvcTest() {
 						PayloadDocumentation.fieldWithPath("items[].cholesterol").type(BigDecimal::class.java).description("콜레스테롤 (mg)"),
 						PayloadDocumentation.fieldWithPath("items[].sodium").type(BigDecimal::class.java).description("나트륨 (mg)"),
 						PayloadDocumentation.fieldWithPath("items[].dietaryFiber").type(BigDecimal::class.java).description("식이섬유 (g)"),
+						PayloadDocumentation.fieldWithPath("items[].intakeAmount").type(JsonFieldType.NUMBER).description("섭취량 (g)"),
 						PayloadDocumentation.fieldWithPath("items[].mealType").type(JsonFieldType.STRING).description("식사 유형"),
 					)
 				)

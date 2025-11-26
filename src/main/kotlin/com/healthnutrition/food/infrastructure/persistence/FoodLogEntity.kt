@@ -66,6 +66,9 @@ class FoodLogEntity(
 	@Enumerated(EnumType.STRING)
 	val mealType: MealType, // 식사유형
 
+	@Column(name = "intake_amount")
+	val intakeAmount: Int, // 섭취량 (g)
+
 	@CreatedDate
 	@Column(name = "created_at")
 	var createdAt: LocalDateTime? = null

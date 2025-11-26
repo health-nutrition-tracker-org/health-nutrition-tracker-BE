@@ -33,6 +33,7 @@ class FoodDto {
 		val cholesterol: BigDecimal,
 		val sodium: BigDecimal,
 		val dietaryFiber: BigDecimal?,
+		val intakeAmount: Int,
 		val mealType: MealType
 	)
 }
