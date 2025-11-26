@@ -10,7 +10,7 @@ class FoodRequest {
 
 	data class CreateLogItem(
 		val foodName: String,
-		val servingSize: Int?,
+		val servingSize: Int,
 		val kcal: BigDecimal,
 		val carbohydrate: BigDecimal,
 		val sugar: BigDecimal,
