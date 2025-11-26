@@ -68,5 +68,5 @@ class FoodLogEntity(
 
 	@CreatedDate
 	@Column(name = "created_at")
-	val createdAt: LocalDateTime? = null
+	var createdAt: LocalDateTime? = null
 )

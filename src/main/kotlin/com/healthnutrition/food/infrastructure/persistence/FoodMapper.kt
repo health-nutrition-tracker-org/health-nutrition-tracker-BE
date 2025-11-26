@@ -1,7 +1,6 @@
 package com.healthnutrition.food.infrastructure.persistence
 
 import com.healthnutrition.food.usecase.dto.FoodDto
-import java.time.LocalDateTime
 
 object FoodMapper {
 	fun toLogEntity(accountId: Long, dto: FoodDto.CreateLog): FoodLogEntity = FoodLogEntity(
@@ -18,7 +17,6 @@ object FoodMapper {
 		cholesterol = dto.cholesterol,
 		sodium = dto.sodium,
 		dietaryFiber = dto.dietaryFiber,
-		mealType = dto.mealType,
-		createdAt = LocalDateTime.now()
+		mealType = dto.mealType
 	)
 }
