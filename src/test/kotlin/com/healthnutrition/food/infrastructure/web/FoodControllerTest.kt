@@ -3,6 +3,8 @@ package com.healthnutrition.food.infrastructure.web
 import com.healthnutrition.MockMvcTest
 import com.healthnutrition.auth.infrastructure.config.SecurityConfig
 import com.healthnutrition.auth.infrastructure.security.JwtAuthFilter
+import com.healthnutrition.food.domain.MealType
+import com.healthnutrition.food.infrastructure.web.dto.FoodRequest
 import com.healthnutrition.food.usecase.FoodUseCase
 import com.healthnutrition.food.usecase.dto.FoodDto
 import com.ninjasquad.springmockk.MockkBean
@@ -130,6 +132,63 @@ class FoodControllerTest : MockMvcTest() {
 						PayloadDocumentation.fieldWithPath("items[].cholesterol").type(JsonFieldType.VARIES).description("콜레스테롤 (mg)"),
 						PayloadDocumentation.fieldWithPath("items[].sodium").type(JsonFieldType.VARIES).description("나트륨 (mg)"),
 						PayloadDocumentation.fieldWithPath("items[].dietaryFiber").type(JsonFieldType.VARIES).description("식이섬유 (g) (Nullable)"),
+					)
+				)
+			)
+	}
+
+	@Test
+	@DisplayName("섭취한 음식 기록 저장")
+	fun postFoodLogs_mock_test() {
+		val request = FoodRequest.CreateLog(
+			items = listOf(
+				FoodRequest.CreateLogItem(
+					foodName = "치킨가라아게",
+					servingSize = 100,
+					kcal = BigDecimal.valueOf(289.0),
+					carbohydrate = BigDecimal.valueOf(9.42),
+					sugar = BigDecimal.valueOf(0.0),
+					protein = BigDecimal.valueOf(22.54),
+					fat = BigDecimal.valueOf(17.35),
+					saturatedFattyAcid = BigDecimal.valueOf(87.0),
+					transFattyAcid = BigDecimal.valueOf(4.61),
+					cholesterol = BigDecimal.valueOf(0.2),
+					sodium = BigDecimal.valueOf(292.0),
+					dietaryFiber = BigDecimal.valueOf(0.3),
+					mealType = MealType.LUNCH
+				)
+			)
+		)
+
+		every { foodUseCase.postFoodLogs(any(), any()) } returns Unit
+
+		mockMvc.perform(
+			RestDocumentationRequestBuilders.post("/v1/foods/logs")
+				.requestAttr("accountId", 1L)
+				.content(objectMapper.writeValueAsString(request))
+				.contentType(MediaType.APPLICATION_JSON)
+				.accept(MediaType.APPLICATION_JSON)
+		).andExpect(MockMvcResultMatchers.status().isOk)
+			.andDo(
+				MockMvcRestDocumentation.document(
+					"Post-Food-Logs",
+					Preprocessors.preprocessRequest(Preprocessors.prettyPrint()),
+					Preprocessors.preprocessResponse(Preprocessors.prettyPrint()),
+					PayloadDocumentation.requestFields(
+						PayloadDocumentation.fieldWithPath("items").type(JsonFieldType.ARRAY).description("섭취한 음식 요청"),
+						PayloadDocumentation.fieldWithPath("items[].foodName").type(JsonFieldType.STRING).description("음식명"),
+						PayloadDocumentation.fieldWithPath("items[].servingSize").type(JsonFieldType.NUMBER).description("영양성분함량기준량 (g)"),
+						PayloadDocumentation.fieldWithPath("items[].kcal").type(BigDecimal::class.java).description("칼로리 (kcal)"),
+						PayloadDocumentation.fieldWithPath("items[].carbohydrate").type(BigDecimal::class.java).description("탄수화물 (g)"),
+						PayloadDocumentation.fieldWithPath("items[].sugar").type(BigDecimal::class.java).description("당류 (g)"),
+						PayloadDocumentation.fieldWithPath("items[].protein").type(BigDecimal::class.java).description("단백질 (g)"),
+						PayloadDocumentation.fieldWithPath("items[].fat").type(BigDecimal::class.java).description("지방 (g)"),
+						PayloadDocumentation.fieldWithPath("items[].saturatedFattyAcid").type(BigDecimal::class.java).description("포화지방산 (g)"),
+						PayloadDocumentation.fieldWithPath("items[].transFattyAcid").type(BigDecimal::class.java).description("트랜스지방산 (g)"),
+						PayloadDocumentation.fieldWithPath("items[].cholesterol").type(BigDecimal::class.java).description("콜레스테롤 (mg)"),
+						PayloadDocumentation.fieldWithPath("items[].sodium").type(BigDecimal::class.java).description("나트륨 (mg)"),
+						PayloadDocumentation.fieldWithPath("items[].dietaryFiber").type(BigDecimal::class.java).description("식이섬유 (g)"),
+						PayloadDocumentation.fieldWithPath("items[].mealType").type(JsonFieldType.STRING).description("식사 유형"),
 					)
 				)
 			)
