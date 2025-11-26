@@ -10,7 +10,7 @@ class FoodResponse {
 	data class SearchItem(
 		val foodName: String,
 		val foodCategoryName: String, // 식품 대분류명
-		val servingSize: Int?, // 영양성분함량기준량 (g)
+		val servingSize: Int, // 영양성분함량기준량 (g)
 		val kcal: BigDecimal, // 칼로리 (kcal)
 		val carbohydrate: BigDecimal, // 탄수화물 (g)
 		val sugar: BigDecimal, // 당류 (g)

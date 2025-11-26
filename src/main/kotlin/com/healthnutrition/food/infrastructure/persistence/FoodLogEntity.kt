@@ -30,7 +30,7 @@ class FoodLogEntity(
 	val foodName: String,
 
 	@Column(name = "serving_size")
-	val servingSize: Int?, // 영양성분함량기준량 (g)
+	val servingSize: Int, // 영양성분함량기준량 (g)
 
 	@Column
 	val kcal: BigDecimal, // 칼로리 (kcal)
@@ -66,7 +66,10 @@ class FoodLogEntity(
 	@Enumerated(EnumType.STRING)
 	val mealType: MealType, // 식사유형
 
+	@Column(name = "intake_amount")
+	val intakeAmount: Int, // 섭취량 (g)
+
 	@CreatedDate
 	@Column(name = "created_at")
-	val createdAt: LocalDateTime? = null
+	var createdAt: LocalDateTime? = null
 )
