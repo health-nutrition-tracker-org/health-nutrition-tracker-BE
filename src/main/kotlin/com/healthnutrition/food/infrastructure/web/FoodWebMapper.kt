@@ -1,5 +1,6 @@
 package com.healthnutrition.food.infrastructure.web
 
+import com.healthnutrition.food.infrastructure.web.dto.FoodRequest
 import com.healthnutrition.food.infrastructure.web.dto.FoodResponse
 import com.healthnutrition.food.usecase.dto.FoodDto
 
@@ -24,5 +25,25 @@ object FoodWebMapper {
 		}
 
 		return FoodResponse.Search(items = searchItems)
+	}
+
+	fun toFoodLogCreateDtos(createFoodLogRequest: FoodRequest.CreateLog): List<FoodDto.CreateLog> {
+		return createFoodLogRequest.items.map { request ->
+			FoodDto.CreateLog(
+				foodName = request.foodName,
+				servingSize = request.servingSize,
+				kcal = request.kcal,
+				carbohydrate = request.carbohydrate,
+				sugar = request.sugar,
+				protein = request.protein,
+				fat = request.fat,
+				saturatedFattyAcid = request.saturatedFattyAcid,
+				transFattyAcid = request.transFattyAcid,
+				cholesterol = request.cholesterol,
+				sodium = request.sodium,
+				dietaryFiber = request.dietaryFiber,
+				mealType = request.mealType
+			)
+		}
 	}
 }

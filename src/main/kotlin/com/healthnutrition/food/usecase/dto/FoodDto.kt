@@ -1,5 +1,6 @@
 package com.healthnutrition.food.usecase.dto
 
+import com.healthnutrition.food.domain.MealType
 import java.math.BigDecimal
 
 class FoodDto {
@@ -17,5 +18,21 @@ class FoodDto {
 		val cholesterol: BigDecimal, // 콜레스테롤 (mg)
 		val sodium: BigDecimal, // 나트륨 (mg)
 		val dietaryFiber: BigDecimal? // 식이섬유 (g)
+	)
+
+	data class CreateLog(
+		val foodName: String,
+		val servingSize: Int?,
+		val kcal: BigDecimal,
+		val carbohydrate: BigDecimal,
+		val sugar: BigDecimal,
+		val protein: BigDecimal,
+		val fat: BigDecimal,
+		val saturatedFattyAcid: BigDecimal?,
+		val transFattyAcid: BigDecimal?,
+		val cholesterol: BigDecimal,
+		val sodium: BigDecimal,
+		val dietaryFiber: BigDecimal?,
+		val mealType: MealType
 	)
 }

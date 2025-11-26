@@ -4,8 +4,10 @@ import com.healthnutrition.food.domain.DataGoClient
 import com.healthnutrition.food.domain.FoodLogRepository
 import com.healthnutrition.food.domain.exception.FoodSearchFailException
 import com.healthnutrition.food.infrastructure.external.dto.DataGoClientRequest
+import com.healthnutrition.food.infrastructure.persistence.FoodMapper
 import com.healthnutrition.food.usecase.dto.FoodDto
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 
 @Service
 class FoodUseCase(
@@ -38,5 +40,13 @@ class FoodUseCase(
 				dietaryFiber = foodItem.dietaryFiber.toBigDecimal()
 			)
 		}
+	}
+
+	@Transactional
+	fun postFoodLogs(accountId: Long, requests: List<FoodDto.CreateLog>) {
+		val logEntities = requests.map {
+			FoodMapper.toLogEntity(accountId, it)
+		}
+		foodLogRepository.saveAll(logEntities)
 	}
 }
