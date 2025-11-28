@@ -9,4 +9,7 @@ class FoodLogRepositoryImpl(
 ) : FoodLogRepository {
 	override fun save(entity: FoodLogEntity): FoodLogEntity =
 		foodLogJpaRepository.save(entity)
+
+	override fun saveAll(entities: List<FoodLogEntity>): List<FoodLogEntity> =
+		foodLogJpaRepository.saveAll(entities)
 }

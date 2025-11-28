@@ -33,3 +33,8 @@ include::{snippets}/Search-Food/http-request.adoc[]
 include::{snippets}/Search-Food/query-parameters.adoc[]
 include::{snippets}/Search-Food/http-response.adoc[]
 include::{snippets}/Search-Food/response-fields.adoc[]
+
+=== 섭취 음식 저장 API
+include::{snippets}/Search-Food/http-request.adoc[]
+include::{snippets}/Search-Food/request-fields.adoc[]
+include::{snippets}/Search-Food/http-response.adoc[]
