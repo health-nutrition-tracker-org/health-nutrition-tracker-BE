@@ -38,3 +38,10 @@ include::{snippets}/Search-Food/response-fields.adoc[]
 include::{snippets}/Search-Food/http-request.adoc[]
 include::{snippets}/Search-Food/request-fields.adoc[]
 include::{snippets}/Search-Food/http-response.adoc[]
+
+== 대시보드 API
+=== 특정일에 섭취한 칼로리 vs 일일 권장 섭취 칼로리 대시보드 정보 조회 API
+include::{snippets}/Get-Kcal-Diff-Info/http-request.adoc[]
+include::{snippets}/Get-Kcal-Diff-Info/query-parameters.adoc[]
+include::{snippets}/Get-Kcal-Diff-Info/http-response.adoc[]
+include::{snippets}/Get-Kcal-Diff-Info/response-fields.adoc[]

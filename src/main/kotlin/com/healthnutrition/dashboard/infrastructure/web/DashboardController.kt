@@ -13,7 +13,7 @@ class DashboardController(
 	private val dashboardUseCase: DashboardUseCase
 ) {
 	@GetMapping("v1/dashboard/kcal-diff")
-	fun getDashboard(
+	fun getKcalDiffInfo(
 		@RequestAttribute accountId: Long,
 		@RequestParam("date") date: String
 	): ResponseEntity<DashboardResponse.KcalDiffInfo> {
