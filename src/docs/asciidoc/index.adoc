@@ -51,3 +51,9 @@ include::{snippets}/Get-Kcal-Diff-Info/http-request.adoc[]
 include::{snippets}/Get-Kcal-Diff-Info/query-parameters.adoc[]
 include::{snippets}/Get-Kcal-Diff-Info/http-response.adoc[]
 include::{snippets}/Get-Kcal-Diff-Info/response-fields.adoc[]
+
+=== 특정일의 탄수화물/단백질/지방 섭취량 정보 조회 API
+include::{snippets}/Get-Intake-Nutrition-Info/http-request.adoc[]
+include::{snippets}/Get-Intake-Nutrition-Info/query-parameters.adoc[]
+include::{snippets}/Get-Intake-Nutrition-Info/http-response.adoc[]
+include::{snippets}/Get-Intake-Nutrition-Info/response-fields.adoc[]

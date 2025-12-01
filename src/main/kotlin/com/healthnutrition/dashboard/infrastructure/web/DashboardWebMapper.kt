@@ -11,4 +11,15 @@ object DashboardWebMapper {
 			totalIntakeKcal = dto.totalIntakeKcal,
 			diffKcal = dto.diffKcal
 		)
+
+	fun toIntakeNutritionInfoResponse(dto: DashboardDto.IntakeNutritionInfo): DashboardResponse.IntakeNutritionInfo =
+		DashboardResponse.IntakeNutritionInfo(
+			date = dto.date,
+			totalCarbohydrate = dto.totalCarbohydrate,
+			totalProtein = dto.totalProtein,
+			totalFat = dto.totalFat,
+			dailyCarbohydrate = dto.dailyCarbohydrate,
+			dailyProtein = dto.dailyProtein,
+			dailyFat = dto.dailyFat
+		)
 }

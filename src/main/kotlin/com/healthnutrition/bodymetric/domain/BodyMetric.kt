@@ -18,7 +18,7 @@ data class BodyMetric(
 		val bodyFatPercent = bodyFatRate.divide(BigDecimal.valueOf(100))
 		val lbm = weight.multiply(BigDecimal.ONE.subtract(bodyFatPercent))
 			.setScale(2, RoundingMode.HALF_UP)
-		return BigDecimal.valueOf(370).plus(BigDecimal.valueOf(21.6).multiply(lbm))
+		return BigDecimal.valueOf(370).add(BigDecimal.valueOf(21.6).multiply(lbm))
 			.setScale(2, RoundingMode.HALF_UP)
 	}
 
@@ -27,5 +27,32 @@ data class BodyMetric(
 	 */
 	fun calculateTdee(): BigDecimal {
 		return calculateBmr().multiply(activityLevel.factor).setScale(2, RoundingMode.HALF_UP)
+	}
+
+	/**
+	 * 일일 권장 탄수화물양
+	 * 총열량의 45-65%, 평균 55%
+	 */
+	fun calculateDailyCarbohydrate(): BigDecimal {
+		return calculateTdee().multiply(BigDecimal.valueOf(0.55)).divide(BigDecimal.valueOf(4))
+			.setScale(2, RoundingMode.HALF_UP)
+	}
+
+	/**
+	 * 일일 권장 단백질
+	 * 총열량의 10-35%, 평균 20%
+	 */
+	fun calculateDailyProtein(): BigDecimal {
+		return calculateTdee().multiply(BigDecimal.valueOf(0.2)).divide(BigDecimal.valueOf(4))
+			.setScale(2, RoundingMode.HALF_UP)
+	}
+
+	/**
+	 * 일일 권장 지방
+	 * 총열량의 20-35%, 평균 25%
+	 */
+	fun calculateDailyFat(): BigDecimal {
+		return calculateTdee().multiply(BigDecimal.valueOf(0.25)).divide(BigDecimal.valueOf(9))
+			.setScale(2, RoundingMode.HALF_UP)
 	}
 }

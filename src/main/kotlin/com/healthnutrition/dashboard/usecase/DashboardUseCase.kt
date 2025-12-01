@@ -17,17 +17,15 @@ class DashboardUseCase(
 	private val foodLogRepository: FoodLogRepository
 ) {
     /**
-     * 사용자 별 오늘 섭취한 칼로리 vs 일일 권장 섭취 칼로리
+     * 사용자 별 특정일 섭취한 칼로리 vs 일일 권장 섭취 칼로리
      */
     @Transactional(readOnly = true)
-    fun getKcalDiffInfo(accountId: Long, date: String): DashboardDto.KcalDiffInfo {
+    fun getKcalDiffInfoByDate(accountId: Long, date: String): DashboardDto.KcalDiffInfo {
 	    val targetDate = DateUtil.parseDate("yyyy-MM-dd", date)
 		val startDate = targetDate.atStartOfDay(ZoneId.of("Asia/Seoul")).toLocalDateTime() // 오늘 하루의 시작 일자
 	    val endDate = targetDate.atTime(LocalTime.MAX) // 오늘 하루의 끝 일자
 
-	    val tdee = BodyMetricMapper.toDomain(
-			entity = bodyMetricRepository.getByAccountIdOrThrow(accountId)
-		).calculateTdee()
+	    val tdee = BodyMetricMapper.toDomain(entity = bodyMetricRepository.getByAccountIdOrThrow(accountId)).calculateTdee()
 	    val totalIntakeKcal = foodLogRepository.getAllByAccountIdEqualsAndCreatedAtBetween(
 		    accountId = accountId,
 			startDate = startDate,
@@ -41,6 +39,37 @@ class DashboardUseCase(
 			tdee = tdee,
 			totalIntakeKcal = totalIntakeKcal,
 			diffKcal = tdee.subtract(totalIntakeKcal)
+		)
+	}
+
+	/**
+	 * 사용자 별 특정일의 탄수화물/지방/단백질 섭취량
+	 */
+	@Transactional(readOnly = true)
+	fun getIntakeNutritionByDate(accountId: Long, date: String): DashboardDto.IntakeNutritionInfo {
+		val targetDate = DateUtil.parseDate("yyyy-MM-dd", date)
+		val startDate = targetDate.atStartOfDay(ZoneId.of("Asia/Seoul")).toLocalDateTime() // 오늘 하루의 시작 일자
+		val endDate = targetDate.atTime(LocalTime.MAX) // 오늘 하루의 끝 일자
+
+		val bodyMetric = BodyMetricMapper.toDomain(entity = bodyMetricRepository.getByAccountIdOrThrow(accountId))
+
+		val foodLogEntities = foodLogRepository.getAllByAccountIdEqualsAndCreatedAtBetween(
+			accountId = accountId,
+			startDate = startDate,
+			endDate = endDate
+		)
+		val totalCarbohydrate = foodLogEntities.sumOf { it.carbohydrate }
+		val totalProtein = foodLogEntities.sumOf { it.protein }
+		val totalFat = foodLogEntities.sumOf { it.fat }
+
+		return DashboardDto.IntakeNutritionInfo(
+			date = date,
+			totalCarbohydrate = totalCarbohydrate,
+			totalProtein = totalProtein,
+			totalFat = totalFat,
+			dailyCarbohydrate = bodyMetric.calculateDailyCarbohydrate(),
+			dailyProtein = bodyMetric.calculateDailyProtein(),
+			dailyFat = bodyMetric.calculateDailyFat()
 		)
 	}
 }

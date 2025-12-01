@@ -19,7 +19,19 @@ class DashboardController(
 	): ResponseEntity<DashboardResponse.KcalDiffInfo> {
 		return ResponseEntity.ok(
 			DashboardWebMapper.toKcalDiffInfoResponse(
-				dto = dashboardUseCase.getKcalDiffInfo(accountId, date)
+				dto = dashboardUseCase.getKcalDiffInfoByDate(accountId, date)
+			)
+		)
+	}
+
+	@GetMapping("v1/dashboard/intake-nutrition")
+	fun getIntakeNutrition(
+		@RequestAttribute accountId: Long,
+		@RequestParam("date") date: String
+	): ResponseEntity<DashboardResponse.IntakeNutritionInfo> {
+		return ResponseEntity.ok(
+			DashboardWebMapper.toIntakeNutritionInfoResponse(
+				dto = dashboardUseCase.getIntakeNutritionByDate(accountId, date)
 			)
 		)
 	}
