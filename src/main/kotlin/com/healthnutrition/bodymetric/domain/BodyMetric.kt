@@ -34,8 +34,7 @@ data class BodyMetric(
 	 * 총열량의 45-65%, 평균 55%
 	 */
 	fun calculateDailyCarbohydrate(): BigDecimal {
-		return calculateTdee().multiply(BigDecimal.valueOf(0.55)).divide(BigDecimal.valueOf(4))
-			.setScale(2, RoundingMode.HALF_UP)
+		return calculateTdee().multiply(BigDecimal.valueOf(0.55)).divide(BigDecimal.valueOf(4), 2, RoundingMode.HALF_UP)
 	}
 
 	/**
@@ -43,8 +42,7 @@ data class BodyMetric(
 	 * 총열량의 10-35%, 평균 20%
 	 */
 	fun calculateDailyProtein(): BigDecimal {
-		return calculateTdee().multiply(BigDecimal.valueOf(0.2)).divide(BigDecimal.valueOf(4))
-			.setScale(2, RoundingMode.HALF_UP)
+		return calculateTdee().multiply(BigDecimal.valueOf(0.2)).divide(BigDecimal.valueOf(4), 2, RoundingMode.HALF_UP)
 	}
 
 	/**
@@ -52,7 +50,6 @@ data class BodyMetric(
 	 * 총열량의 20-35%, 평균 25%
 	 */
 	fun calculateDailyFat(): BigDecimal {
-		return calculateTdee().multiply(BigDecimal.valueOf(0.25)).divide(BigDecimal.valueOf(9))
-			.setScale(2, RoundingMode.HALF_UP)
+		return calculateTdee().multiply(BigDecimal.valueOf(0.25)).divide(BigDecimal.valueOf(9), 2, RoundingMode.HALF_UP)
 	}
 }
