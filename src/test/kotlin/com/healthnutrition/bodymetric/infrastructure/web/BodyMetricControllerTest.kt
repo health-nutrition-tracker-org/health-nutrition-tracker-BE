@@ -6,6 +6,7 @@ import com.healthnutrition.auth.infrastructure.security.JwtAuthFilter
 import com.healthnutrition.bodymetric.domain.ActivityLevel
 import com.healthnutrition.bodymetric.infrastructure.web.dto.BodyMetricRequest
 import com.healthnutrition.bodymetric.usecase.BodyMetricUseCase
+import com.healthnutrition.global.util.RestDocUtil
 import com.ninjasquad.springmockk.MockkBean
 import io.mockk.every
 import org.junit.jupiter.api.DisplayName
@@ -18,7 +19,6 @@ import org.springframework.context.annotation.FilterType
 import org.springframework.http.MediaType
 import org.springframework.restdocs.mockmvc.MockMvcRestDocumentation
 import org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders
-import org.springframework.restdocs.operation.preprocess.Preprocessors
 import org.springframework.restdocs.payload.JsonFieldType
 import org.springframework.restdocs.payload.PayloadDocumentation
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers
@@ -63,8 +63,8 @@ class BodyMetricControllerTest : MockMvcTest() {
 			.andDo(
 				MockMvcRestDocumentation.document(
 					"Post-Body-Metric",
-					Preprocessors.preprocessRequest(Preprocessors.prettyPrint()),
-					Preprocessors.preprocessResponse(Preprocessors.prettyPrint()),
+					RestDocUtil.requestPreprocessor(),
+					RestDocUtil.responsePreprocessor(),
 					PayloadDocumentation.requestFields(
 						PayloadDocumentation.fieldWithPath("height").type(BigDecimal::class.java).description("키 (cm)"),
 						PayloadDocumentation.fieldWithPath("weight").type(BigDecimal::class.java).description("몸무게 (kg)"),

@@ -5,6 +5,7 @@ import com.healthnutrition.auth.infrastructure.config.SecurityConfig
 import com.healthnutrition.auth.infrastructure.security.JwtAuthFilter
 import com.healthnutrition.dashboard.usecase.DashboardUseCase
 import com.healthnutrition.dashboard.usecase.dto.DashboardDto
+import com.healthnutrition.global.util.RestDocUtil
 import com.ninjasquad.springmockk.MockkBean
 import io.mockk.every
 import org.junit.jupiter.api.DisplayName
@@ -17,7 +18,6 @@ import org.springframework.context.annotation.FilterType
 import org.springframework.http.MediaType
 import org.springframework.restdocs.mockmvc.MockMvcRestDocumentation
 import org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders
-import org.springframework.restdocs.operation.preprocess.Preprocessors
 import org.springframework.restdocs.payload.JsonFieldType
 import org.springframework.restdocs.payload.PayloadDocumentation
 import org.springframework.restdocs.request.RequestDocumentation
@@ -63,8 +63,8 @@ class DashboardControllerTest : MockMvcTest() {
 			.andDo(
 				MockMvcRestDocumentation.document(
 					"Get-Kcal-Diff-Info",
-					Preprocessors.preprocessRequest(Preprocessors.prettyPrint()),
-					Preprocessors.preprocessResponse(Preprocessors.prettyPrint()),
+					RestDocUtil.requestPreprocessor(),
+					RestDocUtil.responsePreprocessor(),
 					RequestDocumentation.queryParameters(
 						RequestDocumentation.parameterWithName("date").description("기준일자")
 					),
