@@ -27,6 +27,12 @@ include::{snippets}/Account-Sign-In/request-fields.adoc[]
 include::{snippets}/Account-Sign-In/http-response.adoc[]
 include::{snippets}/Account-Sign-In/response-fields.adoc[]
 
+== 신체정보 API
+=== 신체정보 저장 API
+include::{snippets}/Post-Body-Metric/http-request.adoc[]
+include::{snippets}/Post-Body-Metric/request-fields.adoc[]
+include::{snippets}/Post-Body-Metric/http-response.adoc[]
+
 == 음식 API
 === 음식 검색 API
 include::{snippets}/Search-Food/http-request.adoc[]
