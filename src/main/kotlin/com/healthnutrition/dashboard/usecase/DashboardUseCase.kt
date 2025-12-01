@@ -8,6 +8,7 @@ import com.healthnutrition.food.infrastructure.persistence.FoodMapper
 import com.healthnutrition.global.util.DateUtil
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
+import java.math.BigDecimal
 import java.time.LocalTime
 import java.time.ZoneId
 
@@ -58,9 +59,15 @@ class DashboardUseCase(
 			startDate = startDate,
 			endDate = endDate
 		)
-		val totalCarbohydrate = foodLogEntities.sumOf { it.carbohydrate }
-		val totalProtein = foodLogEntities.sumOf { it.protein }
-		val totalFat = foodLogEntities.sumOf { it.fat }
+		var totalCarbohydrate = BigDecimal.ZERO
+		var totalProtein = BigDecimal.ZERO
+		var totalFat = BigDecimal.ZERO
+
+		foodLogEntities.forEach { foodLog ->
+			totalCarbohydrate = totalCarbohydrate.add(foodLog.carbohydrate)
+			totalProtein = totalProtein.add(foodLog.protein)
+			totalFat = totalFat.add(foodLog.fat)
+		}
 
 		return DashboardDto.IntakeNutritionInfo(
 			date = date,
