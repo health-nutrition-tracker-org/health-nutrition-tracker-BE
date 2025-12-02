@@ -82,7 +82,7 @@ class DashboardControllerTest : MockMvcTest() {
 	@DisplayName("특정일에 섭취한 탄수화물/단백질/지방 섭취량 대시보드 정보 조회 테스트")
 	fun getIntakeNutrition_mock_test() {
 		val date = "2025-11-26"
-		val response = DashboardDto.IntakeNutritionInfo(
+		val response = DashboardDto.IntakeNutritionDaily(
 			date = date,
 			totalCarbohydrate = BigDecimal.valueOf(169),
 			totalProtein = BigDecimal.valueOf(70),
@@ -116,6 +116,48 @@ class DashboardControllerTest : MockMvcTest() {
 						PayloadDocumentation.fieldWithPath("dailyCarbohydrate").type(BigDecimal::class.java).description("일일 권장 탄수화물 섭취량"),
 						PayloadDocumentation.fieldWithPath("dailyProtein").type(BigDecimal::class.java).description("일일 권장 단백질 섭취량"),
 						PayloadDocumentation.fieldWithPath("dailyFat").type(BigDecimal::class.java).description("일일 권장 지방 섭취량")
+					)
+				)
+			)
+	}
+
+	@Test
+	@DisplayName("특정 기간동안 섭취한 탄수화물/단백질/지방 섭취량 대시보드 정보 조회 테스트")
+	fun getIntakeSectionNutrition_mock_test() {
+		val startDate = "2025-11-26"
+		val endDate = "2025-11-30"
+		val response = DashboardDto.IntakeNutritionSection(
+			startDate = startDate,
+			endDate = endDate,
+			totalCarbohydrate = BigDecimal.valueOf(665),
+			totalProtein = BigDecimal.valueOf(280),
+			totalFat = BigDecimal.valueOf(135)
+		)
+
+		every { dashboardUseCase.getIntakeNutritionBetweenDate(any(), any(), any()) } returns response
+
+		mockMvc.perform(
+			RestDocumentationRequestBuilders.get("/v1/dashboard/intake-section-nutrition")
+				.requestAttr("accountId", 1L)
+				.queryParam("startDate", startDate)
+				.queryParam("endDate", endDate)
+				.accept(MediaType.APPLICATION_JSON)
+		).andExpect(MockMvcResultMatchers.status().isOk)
+			.andDo(
+				MockMvcRestDocumentation.document(
+					"Get-Intake-Section-Nutrition-Info",
+					RestDocUtil.requestPreprocessor(),
+					RestDocUtil.responsePreprocessor(),
+					RequestDocumentation.queryParameters(
+						RequestDocumentation.parameterWithName("startDate").description("시작일자"),
+						RequestDocumentation.parameterWithName("endDate").description("종료일자")
+					),
+					PayloadDocumentation.responseFields(
+						PayloadDocumentation.fieldWithPath("startDate").type(JsonFieldType.STRING).description("시작일자"),
+						PayloadDocumentation.fieldWithPath("endDate").type(JsonFieldType.STRING).description("종료일자"),
+						PayloadDocumentation.fieldWithPath("totalCarbohydrate").type(BigDecimal::class.java).description("총 섭취 탄수화물"),
+						PayloadDocumentation.fieldWithPath("totalProtein").type(BigDecimal::class.java).description("총 섭취 단백질"),
+						PayloadDocumentation.fieldWithPath("totalFat").type(BigDecimal::class.java).description("총 섭취 지방")
 					)
 				)
 			)

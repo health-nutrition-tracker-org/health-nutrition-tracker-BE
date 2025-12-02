@@ -28,10 +28,23 @@ class DashboardController(
 	fun getIntakeNutrition(
 		@RequestAttribute accountId: Long,
 		@RequestParam("date") date: String
-	): ResponseEntity<DashboardResponse.IntakeNutritionInfo> {
+	): ResponseEntity<DashboardResponse.IntakeNutritionDaily> {
 		return ResponseEntity.ok(
-			DashboardWebMapper.toIntakeNutritionInfoResponse(
+			DashboardWebMapper.toIntakeNutritionDailyResponse(
 				dto = dashboardUseCase.getIntakeNutritionByDate(accountId, date)
+			)
+		)
+	}
+
+	@GetMapping("v1/dashboard/intake-section-nutrition")
+	fun getIntakeSectionNutrition(
+		@RequestAttribute accountId: Long,
+		@RequestParam("startDate") startDate: String,
+		@RequestParam("endDate") endDate: String
+	): ResponseEntity<DashboardResponse.IntakeNutritionSection> {
+		return ResponseEntity.ok(
+			DashboardWebMapper.toIntakeNutritionSectionResponse(
+				dto = dashboardUseCase.getIntakeNutritionBetweenDate(accountId, startDate, endDate)
 			)
 		)
 	}

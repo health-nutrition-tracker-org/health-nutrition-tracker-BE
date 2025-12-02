@@ -57,3 +57,9 @@ include::{snippets}/Get-Intake-Nutrition-Info/http-request.adoc[]
 include::{snippets}/Get-Intake-Nutrition-Info/query-parameters.adoc[]
 include::{snippets}/Get-Intake-Nutrition-Info/http-response.adoc[]
 include::{snippets}/Get-Intake-Nutrition-Info/response-fields.adoc[]
+
+=== 특정 기간의 탄수화물/단백질/지방 섭취량 정보 조회 API
+include::{snippets}/Get-Intake-Section-Nutrition-Info/http-request.adoc[]
+include::{snippets}/Get-Intake-Section-Nutrition-Info/query-parameters.adoc[]
+include::{snippets}/Get-Intake-Section-Nutrition-Info/http-response.adoc[]
+include::{snippets}/Get-Intake-Section-Nutrition-Info/response-fields.adoc[]

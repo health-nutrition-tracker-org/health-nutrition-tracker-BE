@@ -47,7 +47,7 @@ class DashboardUseCase(
 	 * 사용자 별 특정일의 탄수화물/지방/단백질 섭취량
 	 */
 	@Transactional(readOnly = true)
-	fun getIntakeNutritionByDate(accountId: Long, date: String): DashboardDto.IntakeNutritionInfo {
+	fun getIntakeNutritionByDate(accountId: Long, date: String): DashboardDto.IntakeNutritionDaily {
 		val targetDate = DateUtil.parseDate("yyyy-MM-dd", date)
 		val startDate = targetDate.atStartOfDay(ZoneId.of("Asia/Seoul")).toLocalDateTime() // 오늘 하루의 시작 일자
 		val endDate = targetDate.atTime(LocalTime.MAX) // 오늘 하루의 끝 일자
@@ -69,7 +69,7 @@ class DashboardUseCase(
 			totalFat = totalFat.add(foodLog.fat)
 		}
 
-		return DashboardDto.IntakeNutritionInfo(
+		return DashboardDto.IntakeNutritionDaily(
 			date = date,
 			totalCarbohydrate = totalCarbohydrate,
 			totalProtein = totalProtein,
@@ -77,6 +77,39 @@ class DashboardUseCase(
 			dailyCarbohydrate = bodyMetric.calculateDailyCarbohydrate(),
 			dailyProtein = bodyMetric.calculateDailyProtein(),
 			dailyFat = bodyMetric.calculateDailyFat()
+		)
+	}
+
+	/**
+	 * 사용자 별 특정 기간동안의 탄수화물/지방/단백질 섭취량
+	 */
+	@Transactional(readOnly = true)
+	fun getIntakeNutritionBetweenDate(accountId: Long, startDate: String, endDate: String): DashboardDto.IntakeNutritionSection {
+		val start = DateUtil.parseDate("yyyy-MM-dd", startDate).atStartOfDay(ZoneId.of("Asia/Seoul")).toLocalDateTime() // 시작일자의 시작 시간
+		val end = DateUtil.parseDate("yyyy-MM-dd", endDate).atTime(LocalTime.MAX) // 종료일자의 하루 끝 시간
+
+		val bodyMetric = BodyMetricMapper.toDomain(entity = bodyMetricRepository.getByAccountIdOrThrow(accountId))
+		val foodLogEntities = foodLogRepository.getAllByAccountIdEqualsAndCreatedAtBetween(
+			accountId = accountId,
+			startDate = start,
+			endDate = end
+		)
+		var totalCarbohydrate = BigDecimal.ZERO
+		var totalProtein = BigDecimal.ZERO
+		var totalFat = BigDecimal.ZERO
+
+		foodLogEntities.forEach { foodLog ->
+			totalCarbohydrate = totalCarbohydrate.add(foodLog.carbohydrate)
+			totalProtein = totalProtein.add(foodLog.protein)
+			totalFat = totalFat.add(foodLog.fat)
+		}
+
+		return DashboardDto.IntakeNutritionSection(
+			startDate = startDate,
+			endDate = endDate,
+			totalCarbohydrate = totalCarbohydrate,
+			totalProtein = totalProtein,
+			totalFat = totalFat
 		)
 	}
 }
