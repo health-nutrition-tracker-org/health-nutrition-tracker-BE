@@ -1,5 +1,6 @@
 package com.healthnutrition.food.infrastructure.persistence
 
+import com.healthnutrition.food.domain.FoodLogIntakeKcal
 import com.healthnutrition.food.usecase.dto.FoodDto
 
 object FoodMapper {
@@ -19,5 +20,12 @@ object FoodMapper {
 		dietaryFiber = dto.dietaryFiber,
 		intakeAmount = dto.intakeAmount,
 		mealType = dto.mealType
+	)
+
+	fun toIntakeKcalDomain(entity: FoodLogEntity): FoodLogIntakeKcal = FoodLogIntakeKcal(
+		accountId = entity.accountId,
+		servingSize = entity.servingSize,
+		intakeAmount = entity.intakeAmount,
+		kcal = entity.kcal
 	)
 }

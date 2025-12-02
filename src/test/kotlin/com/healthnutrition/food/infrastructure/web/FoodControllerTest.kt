@@ -7,6 +7,7 @@ import com.healthnutrition.food.domain.MealType
 import com.healthnutrition.food.infrastructure.web.dto.FoodRequest
 import com.healthnutrition.food.usecase.FoodUseCase
 import com.healthnutrition.food.usecase.dto.FoodDto
+import com.healthnutrition.global.util.RestDocUtil
 import com.ninjasquad.springmockk.MockkBean
 import io.mockk.every
 import org.junit.jupiter.api.DisplayName
@@ -19,7 +20,6 @@ import org.springframework.context.annotation.FilterType
 import org.springframework.http.MediaType
 import org.springframework.restdocs.mockmvc.MockMvcRestDocumentation
 import org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders
-import org.springframework.restdocs.operation.preprocess.Preprocessors
 import org.springframework.restdocs.payload.JsonFieldType
 import org.springframework.restdocs.payload.PayloadDocumentation
 import org.springframework.restdocs.request.RequestDocumentation
@@ -110,8 +110,8 @@ class FoodControllerTest : MockMvcTest() {
 			.andDo(
 				MockMvcRestDocumentation.document(
 					"Search-Food",
-					Preprocessors.preprocessRequest(Preprocessors.prettyPrint()),
-					Preprocessors.preprocessResponse(Preprocessors.prettyPrint()),
+					RestDocUtil.requestPreprocessor(),
+					RestDocUtil.responsePreprocessor(),
 					RequestDocumentation.queryParameters(
 						RequestDocumentation.parameterWithName("keyword").description("검색 키워드"),
 						RequestDocumentation.parameterWithName("page").description("페이지 번호"),
@@ -173,8 +173,8 @@ class FoodControllerTest : MockMvcTest() {
 			.andDo(
 				MockMvcRestDocumentation.document(
 					"Post-Food-Logs",
-					Preprocessors.preprocessRequest(Preprocessors.prettyPrint()),
-					Preprocessors.preprocessResponse(Preprocessors.prettyPrint()),
+					RestDocUtil.requestPreprocessor(),
+					RestDocUtil.responsePreprocessor(),
 					PayloadDocumentation.requestFields(
 						PayloadDocumentation.fieldWithPath("items").type(JsonFieldType.ARRAY).description("섭취한 음식 요청"),
 						PayloadDocumentation.fieldWithPath("items[].foodName").type(JsonFieldType.STRING).description("음식명"),

@@ -8,6 +8,7 @@ import com.healthnutrition.auth.domain.JwtInfo
 import com.healthnutrition.auth.infrastructure.config.SecurityConfig
 import com.healthnutrition.auth.infrastructure.security.JwtAuthFilter
 import com.healthnutrition.auth.usecase.JwtProvider
+import com.healthnutrition.global.util.RestDocUtil
 import com.ninjasquad.springmockk.MockkBean
 import io.mockk.every
 import org.junit.jupiter.api.DisplayName
@@ -20,7 +21,6 @@ import org.springframework.context.annotation.FilterType
 import org.springframework.http.MediaType
 import org.springframework.restdocs.mockmvc.MockMvcRestDocumentation
 import org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders
-import org.springframework.restdocs.operation.preprocess.Preprocessors
 import org.springframework.restdocs.payload.JsonFieldType
 import org.springframework.restdocs.payload.PayloadDocumentation
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers
@@ -68,8 +68,8 @@ class AccountControllerTest : MockMvcTest() {
 			.andDo(
 				MockMvcRestDocumentation.document(
 					"Account-Sign-Up",
-					Preprocessors.preprocessRequest(Preprocessors.prettyPrint()),
-					Preprocessors.preprocessResponse(Preprocessors.prettyPrint()),
+					RestDocUtil.requestPreprocessor(),
+					RestDocUtil.responsePreprocessor(),
 					PayloadDocumentation.requestFields(
 						PayloadDocumentation.fieldWithPath("email").type(JsonFieldType.STRING).description("이메일"),
 						PayloadDocumentation.fieldWithPath("password").type(JsonFieldType.STRING).description("패스워드")
@@ -114,8 +114,8 @@ class AccountControllerTest : MockMvcTest() {
 			.andDo(
 				MockMvcRestDocumentation.document(
 					"Account-Sign-In",
-					Preprocessors.preprocessRequest(Preprocessors.prettyPrint()),
-					Preprocessors.preprocessResponse(Preprocessors.prettyPrint()),
+					RestDocUtil.requestPreprocessor(),
+					RestDocUtil.responsePreprocessor(),
 					PayloadDocumentation.requestFields(
 						PayloadDocumentation.fieldWithPath("email").type(JsonFieldType.STRING).description("이메일"),
 						PayloadDocumentation.fieldWithPath("password").type(JsonFieldType.STRING).description("패스워드")
