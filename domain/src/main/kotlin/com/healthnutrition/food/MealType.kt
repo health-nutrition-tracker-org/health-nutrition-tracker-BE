@@ -1,4 +1,4 @@
-package com.healthnutrition.food.domain
+package com.healthnutrition.food
 
 enum class MealType(val description: String) {
 	BREAKFAST("아침식사"),

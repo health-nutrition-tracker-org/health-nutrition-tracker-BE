@@ -1,4 +1,4 @@
-package com.healthnutrition.bodymetric.domain
+package com.healthnutrition.bodymetric
 
 import java.math.BigDecimal
 

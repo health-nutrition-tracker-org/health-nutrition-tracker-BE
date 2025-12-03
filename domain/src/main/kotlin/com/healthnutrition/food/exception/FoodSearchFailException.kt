@@ -1,6 +1,6 @@
-package com.healthnutrition.food.domain.exception
+package com.healthnutrition.food.exception
 
-import com.healthnutrition.global.domain.DomainException
+import com.healthnutrition.DomainException
 import org.springframework.http.HttpStatus
 
 open class FoodSearchFailException(
