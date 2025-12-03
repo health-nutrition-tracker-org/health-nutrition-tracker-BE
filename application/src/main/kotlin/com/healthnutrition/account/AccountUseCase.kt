@@ -1,9 +1,6 @@
-package com.healthnutrition.account.usecase
+package com.healthnutrition.account
 
-import com.healthnutrition.account.domain.Account
-import com.healthnutrition.account.domain.AccountRepository
-import com.healthnutrition.account.infrastructure.persistence.AccountMapper
-import com.healthnutrition.account.usecase.dto.AccountDto
+import com.healthnutrition.account.dto.AccountDto
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 

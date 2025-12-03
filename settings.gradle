@@ -1,3 +1,4 @@
 rootProject.name = 'health-nutrition-tracker-BE'
 
 include 'domain'
+include 'application'

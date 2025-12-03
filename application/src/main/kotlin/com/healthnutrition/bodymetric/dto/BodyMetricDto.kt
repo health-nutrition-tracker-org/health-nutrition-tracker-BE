@@ -1,4 +1,4 @@
-package com.healthnutrition.bodymetric.usecase.dto
+package com.healthnutrition.bodymetric.dto
 
 import com.healthnutrition.bodymetric.domain.ActivityLevel
 import java.math.BigDecimal

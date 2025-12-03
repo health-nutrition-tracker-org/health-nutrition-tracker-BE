@@ -1,4 +1,4 @@
-package com.healthnutrition.account.usecase.dto
+package com.healthnutrition.account.dto
 
 class AccountDto {
 	data class SignUp(

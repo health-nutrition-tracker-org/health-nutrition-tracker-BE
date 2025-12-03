@@ -1,11 +1,9 @@
-package com.healthnutrition.dashboard.usecase
+package com.healthnutrition.dashboard
 
-import com.healthnutrition.bodymetric.domain.BodyMetricRepository
-import com.healthnutrition.bodymetric.infrastructure.persistence.BodyMetricMapper
-import com.healthnutrition.dashboard.usecase.dto.DashboardDto
-import com.healthnutrition.food.domain.FoodLogRepository
-import com.healthnutrition.food.infrastructure.persistence.FoodMapper
-import com.healthnutrition.global.util.DateUtil
+import com.healthnutrition.bodymetric.BodyMetricRepository
+import com.healthnutrition.dashboard.dto.DashboardDto
+import com.healthnutrition.food.FoodLogRepository
+import com.healthnutrition.shared.util.DateUtil
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import java.math.BigDecimal
@@ -113,4 +111,3 @@ class DashboardUseCase(
 		)
 	}
 }
-

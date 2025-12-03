@@ -1,4 +1,4 @@
-package com.healthnutrition.global.util
+package com.healthnutrition.shared.util
 
 import java.text.SimpleDateFormat
 import java.time.LocalDate

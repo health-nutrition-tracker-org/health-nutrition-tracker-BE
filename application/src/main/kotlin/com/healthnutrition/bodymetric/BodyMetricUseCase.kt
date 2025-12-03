@@ -1,8 +1,6 @@
-package com.healthnutrition.bodymetric.usecase
+package com.healthnutrition.bodymetric
 
-import com.healthnutrition.bodymetric.domain.BodyMetricRepository
-import com.healthnutrition.bodymetric.infrastructure.persistence.BodyMetricMapper
-import com.healthnutrition.bodymetric.usecase.dto.BodyMetricDto
+import com.healthnutrition.bodymetric.dto.BodyMetricDto
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 

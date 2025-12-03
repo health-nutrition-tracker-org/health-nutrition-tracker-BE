@@ -1,4 +1,4 @@
-package com.healthnutrition.food.usecase.dto
+package com.healthnutrition.food.dto
 
 import com.healthnutrition.food.domain.MealType
 import java.math.BigDecimal

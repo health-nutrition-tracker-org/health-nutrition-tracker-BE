@@ -1,11 +1,7 @@
-package com.healthnutrition.food.usecase
+package com.healthnutrition.food
 
-import com.healthnutrition.food.domain.DataGoClient
-import com.healthnutrition.food.domain.FoodLogRepository
-import com.healthnutrition.food.domain.exception.FoodSearchFailException
-import com.healthnutrition.food.infrastructure.external.dto.DataGoClientRequest
-import com.healthnutrition.food.infrastructure.persistence.FoodMapper
-import com.healthnutrition.food.usecase.dto.FoodDto
+import com.healthnutrition.food.dto.FoodDto
+import com.healthnutrition.food.exception.FoodSearchFailException
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 

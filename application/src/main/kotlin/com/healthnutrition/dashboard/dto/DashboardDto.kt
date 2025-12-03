@@ -1,4 +1,4 @@
-package com.healthnutrition.dashboard.usecase.dto
+package com.healthnutrition.dashboard.dto
 
 import java.math.BigDecimal
 
