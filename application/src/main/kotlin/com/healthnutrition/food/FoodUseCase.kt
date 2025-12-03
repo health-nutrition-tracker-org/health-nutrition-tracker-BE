@@ -11,12 +11,10 @@ class FoodUseCase(
 	private val foodLogRepository: FoodLogRepository
 ) {
 	fun searchFoods(keyword: String, page: Int, numOfRows: Int): List<FoodDto.Search> {
-		val foodNutrition = dataGoClient.getFoodNutritionInfo(
-			foodNutritionRequest = DataGoClientRequest.FoodNutrition(
-				page = page,
-				numOfRows = numOfRows,
-				foodName = keyword
-			)
+		val foodNutrition = dataGoClient.getFoodNutritionData(
+			page = page,
+			numOfRows = numOfRows,
+			foodName = keyword
 		).block() ?: run { throw FoodSearchFailException() }
 
 		return foodNutrition.body.items.map { foodItem ->
