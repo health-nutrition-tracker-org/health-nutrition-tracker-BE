@@ -7,7 +7,7 @@ import com.healthnutrition.account.usecase.dto.AccountDto
 import com.healthnutrition.auth.domain.JwtInfo
 import com.healthnutrition.auth.infrastructure.config.SecurityConfig
 import com.healthnutrition.auth.infrastructure.security.JwtAuthFilter
-import com.healthnutrition.auth.usecase.JwtProvider
+import com.healthnutrition.auth.usecase.JwtProviderUseCase
 import com.healthnutrition.global.util.RestDocUtil
 import com.ninjasquad.springmockk.MockkBean
 import io.mockk.every
@@ -43,7 +43,7 @@ class AccountControllerTest : MockMvcTest() {
 	private lateinit var accountUseCase: AccountUseCase
 
 	@MockkBean
-	private lateinit var jwtProvider: JwtProvider
+	private lateinit var jwtProvider: JwtProviderUseCase
 
 	@Test
 	@DisplayName("회원가입 테스트")
