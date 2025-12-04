@@ -1,6 +1,6 @@
 package com.healthnutrition.food.dto
 
-import com.healthnutrition.food.domain.MealType
+import com.healthnutrition.food.MealType
 import java.math.BigDecimal
 
 class FoodDto {

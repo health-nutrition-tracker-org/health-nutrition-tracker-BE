@@ -1,6 +1,6 @@
 package com.healthnutrition.bodymetric.dto
 
-import com.healthnutrition.bodymetric.domain.ActivityLevel
+import com.healthnutrition.bodymetric.ActivityLevel
 import java.math.BigDecimal
 
 class BodyMetricDto {

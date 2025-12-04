@@ -14,25 +14,20 @@ class AccountUseCase(
 		account.verifySignUp()
 		account.updateLastSignIn()
 
-		val accountEntity = accountRepositoryService.save(
-			AccountMapper.toEntity(account)
-		)
+		val savedAccount = accountRepositoryService.save(account)
 
 		return AccountDto.SignInResult(
-			accountId = accountEntity.id!!,
-			email = accountEntity.email
+			accountId = savedAccount.accountId!!,
+			email = savedAccount.email
 		)
 	}
 
 	@Transactional
 	fun signIn(request: AccountDto.SignIn): AccountDto.SignInResult {
-		val accountEntity = accountRepositoryService.getByEmailOrThrow(request.email)
-		val account = AccountMapper.toDomain(
-			entity = accountEntity
-		)
+		val account = accountRepositoryService.getByEmailOrThrow(request.email)
 		account.verifyPassword(request.password)
 		account.updateLastSignIn()
-		accountEntity.updateLastSignInAt(account.lastSignInAt)
+		accountRepositoryService.updateLastSignInAtNow(account.email)
 
 		return AccountDto.SignInResult(
 			accountId = account.accountId!!,

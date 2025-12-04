@@ -24,14 +24,12 @@ class DashboardUseCase(
 		val startDate = targetDate.atStartOfDay(ZoneId.of("Asia/Seoul")).toLocalDateTime() // 오늘 하루의 시작 일자
 	    val endDate = targetDate.atTime(LocalTime.MAX) // 오늘 하루의 끝 일자
 
-	    val tdee = BodyMetricMapper.toDomain(entity = bodyMetricRepository.getByAccountIdOrThrow(accountId)).calculateTdee()
+	    val tdee = bodyMetricRepository.getByAccountIdOrThrow(accountId).calculateTdee()
 	    val totalIntakeKcal = foodLogRepository.getAllByAccountIdEqualsAndCreatedAtBetween(
 		    accountId = accountId,
 			startDate = startDate,
 			endDate = endDate
-		).map {
-			FoodMapper.toIntakeKcalDomain(it)
-	    }.sumOf { it.calculateIntakeKcal() } // 섭취한 칼로리 총 합 계산
+		).sumOf { it.calculateIntakeKcal() } // 섭취한 칼로리 총 합 계산
 
 	    return DashboardDto.KcalDiffInfo(
 			date = date,
@@ -50,9 +48,9 @@ class DashboardUseCase(
 		val startDate = targetDate.atStartOfDay(ZoneId.of("Asia/Seoul")).toLocalDateTime() // 오늘 하루의 시작 일자
 		val endDate = targetDate.atTime(LocalTime.MAX) // 오늘 하루의 끝 일자
 
-		val bodyMetric = BodyMetricMapper.toDomain(entity = bodyMetricRepository.getByAccountIdOrThrow(accountId))
+		val bodyMetric = bodyMetricRepository.getByAccountIdOrThrow(accountId)
 
-		val foodLogEntities = foodLogRepository.getAllByAccountIdEqualsAndCreatedAtBetween(
+		val foodLogs = foodLogRepository.getAllByAccountIdEqualsAndCreatedAtBetween(
 			accountId = accountId,
 			startDate = startDate,
 			endDate = endDate
@@ -61,7 +59,7 @@ class DashboardUseCase(
 		var totalProtein = BigDecimal.ZERO
 		var totalFat = BigDecimal.ZERO
 
-		foodLogEntities.forEach { foodLog ->
+		foodLogs.forEach { foodLog ->
 			totalCarbohydrate = totalCarbohydrate.add(foodLog.carbohydrate)
 			totalProtein = totalProtein.add(foodLog.protein)
 			totalFat = totalFat.add(foodLog.fat)
@@ -86,8 +84,7 @@ class DashboardUseCase(
 		val start = DateUtil.parseDate("yyyy-MM-dd", startDate).atStartOfDay(ZoneId.of("Asia/Seoul")).toLocalDateTime() // 시작일자의 시작 시간
 		val end = DateUtil.parseDate("yyyy-MM-dd", endDate).atTime(LocalTime.MAX) // 종료일자의 하루 끝 시간
 
-		val bodyMetric = BodyMetricMapper.toDomain(entity = bodyMetricRepository.getByAccountIdOrThrow(accountId))
-		val foodLogEntities = foodLogRepository.getAllByAccountIdEqualsAndCreatedAtBetween(
+		val foodLogs = foodLogRepository.getAllByAccountIdEqualsAndCreatedAtBetween(
 			accountId = accountId,
 			startDate = start,
 			endDate = end
@@ -96,7 +93,7 @@ class DashboardUseCase(
 		var totalProtein = BigDecimal.ZERO
 		var totalFat = BigDecimal.ZERO
 
-		foodLogEntities.forEach { foodLog ->
+		foodLogs.forEach { foodLog ->
 			totalCarbohydrate = totalCarbohydrate.add(foodLog.carbohydrate)
 			totalProtein = totalProtein.add(foodLog.protein)
 			totalFat = totalFat.add(foodLog.fat)

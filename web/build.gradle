@@ -17,7 +17,7 @@ dependencies {
     implementation(project(':domain'))
     implementation(project(':application'))
     // infrastructure 구현체는 실행 시에만 필요하므로 런타임에만 추가
-    runtimeOnly(project(':infrastructure'))
+    implementation(project(':infrastructure'))
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.springframework.boot:spring-boot-starter-web'
 

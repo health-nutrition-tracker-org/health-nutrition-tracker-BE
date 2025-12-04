@@ -1,7 +1,6 @@
 package com.healthnutrition.food
 
 import com.healthnutrition.food.dto.FoodDto
-import com.healthnutrition.food.exception.FoodSearchFailException
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
@@ -15,7 +14,7 @@ class FoodUseCase(
 			page = page,
 			numOfRows = numOfRows,
 			foodName = keyword
-		).block() ?: run { throw FoodSearchFailException() }
+		)
 
 		return foodNutrition.body.items.map { foodItem ->
 			FoodDto.Search(
@@ -38,9 +37,25 @@ class FoodUseCase(
 
 	@Transactional
 	fun postFoodLogs(accountId: Long, requests: List<FoodDto.CreateLog>) {
-		val logEntities = requests.map {
-			FoodMapper.toLogEntity(accountId, it)
+		val foodLogs = requests.map {
+			FoodLog(
+				accountId = accountId,
+				foodName = it.foodName,
+				servingSize = it.servingSize,
+				kcal = it.kcal,
+				carbohydrate = it.carbohydrate,
+				sugar = it.sugar,
+				protein = it.protein,
+				fat = it.fat,
+				saturatedFattyAcid = it.saturatedFattyAcid,
+				transFattyAcid = it.transFattyAcid,
+				cholesterol = it.cholesterol,
+				sodium = it.sodium,
+				dietaryFiber = it.dietaryFiber,
+				mealType = it.mealType,
+				intakeAmount = it.intakeAmount
+			)
 		}
-		foodLogRepository.saveAll(logEntities)
+		foodLogRepository.saveAll(foodLogs)
 	}
 }

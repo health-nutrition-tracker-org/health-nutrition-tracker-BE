@@ -11,7 +11,13 @@ class BodyMetricUseCase(
 	@Transactional
 	fun postBodyMetric(request: BodyMetricDto.Post) {
 		bodyMetricRepository.save(
-			entity = BodyMetricMapper.toEntity(request)
+			BodyMetric(
+				accountId = request.accountId,
+				height = request.height,
+				weight = request.weight,
+				bodyFatRate = request.bodyFatRate,
+				activityLevel = request.activityLevel
+			)
 		)
 	}
 }

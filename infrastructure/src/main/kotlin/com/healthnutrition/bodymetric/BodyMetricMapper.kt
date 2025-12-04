@@ -1,17 +1,6 @@
 package com.healthnutrition.bodymetric
 
-import com.healthnutrition.bodymetric.dto.BodyMetricDto
-
 object BodyMetricMapper {
-	fun toEntity(dto: BodyMetricDto.Post): BodyMetricEntity =
-		BodyMetricEntity(
-			accountId = dto.accountId,
-			height = dto.height,
-			weight = dto.weight,
-			bodyFatRate = dto.bodyFatRate,
-			activityLevel = dto.activityLevel
-		)
-
 	fun toEntity(domain: BodyMetric): BodyMetricEntity =
 		BodyMetricEntity(
 			accountId = domain.accountId,
