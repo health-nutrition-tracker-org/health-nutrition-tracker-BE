@@ -1,4 +1,4 @@
-package com.healthnutrition.global.util
+package com.healthnutrition.shared.util
 
 import org.springframework.restdocs.operation.preprocess.OperationRequestPreprocessor
 import org.springframework.restdocs.operation.preprocess.OperationResponsePreprocessor

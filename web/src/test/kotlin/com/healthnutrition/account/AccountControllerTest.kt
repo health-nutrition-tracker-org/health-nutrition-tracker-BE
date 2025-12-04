@@ -1,14 +1,13 @@
-package com.healthnutrition.account.infrastructure.web
+package com.healthnutrition.account
 
 import com.healthnutrition.MockMvcTest
-import com.healthnutrition.account.infrastructure.web.dto.AccountRequest
-import com.healthnutrition.account.usecase.AccountUseCase
-import com.healthnutrition.account.usecase.dto.AccountDto
-import com.healthnutrition.auth.domain.JwtInfo
-import com.healthnutrition.auth.infrastructure.config.SecurityConfig
-import com.healthnutrition.auth.infrastructure.security.JwtAuthFilter
-import com.healthnutrition.auth.usecase.JwtProviderUseCase
-import com.healthnutrition.global.util.RestDocUtil
+import com.healthnutrition.account.dto.AccountDto
+import com.healthnutrition.account.dto.AccountRequest
+import com.healthnutrition.jwt.JwtProviderUseCase
+import com.healthnutrition.jwt.dto.JwtInfo
+import com.healthnutrition.security.JwtAuthFilter
+import com.healthnutrition.security.SecurityConfig
+import com.healthnutrition.shared.util.RestDocUtil
 import com.ninjasquad.springmockk.MockkBean
 import io.mockk.every
 import org.junit.jupiter.api.DisplayName
@@ -103,7 +102,7 @@ class AccountControllerTest : MockMvcTest() {
 		)
 
 		every { accountUseCase.signIn(any()) } returns signInResponse
-		every { jwtProvider.issueToken(any()) } returns response
+		every { jwtProvider.issueToken(any(), any()) } returns response
 
 		mockMvc.perform(
 			RestDocumentationRequestBuilders.post("/v1/accounts/tokens")

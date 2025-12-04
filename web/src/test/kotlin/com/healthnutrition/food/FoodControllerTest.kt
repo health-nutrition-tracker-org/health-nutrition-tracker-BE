@@ -1,13 +1,11 @@
-package com.healthnutrition.food.infrastructure.web
+package com.healthnutrition.food
 
 import com.healthnutrition.MockMvcTest
-import com.healthnutrition.auth.infrastructure.config.SecurityConfig
-import com.healthnutrition.auth.infrastructure.security.JwtAuthFilter
-import com.healthnutrition.food.domain.MealType
-import com.healthnutrition.food.infrastructure.web.dto.FoodRequest
-import com.healthnutrition.food.usecase.FoodUseCase
-import com.healthnutrition.food.usecase.dto.FoodDto
-import com.healthnutrition.global.util.RestDocUtil
+import com.healthnutrition.food.dto.FoodDto
+import com.healthnutrition.food.dto.FoodRequest
+import com.healthnutrition.security.JwtAuthFilter
+import com.healthnutrition.security.SecurityConfig
+import com.healthnutrition.shared.util.RestDocUtil
 import com.ninjasquad.springmockk.MockkBean
 import io.mockk.every
 import org.junit.jupiter.api.DisplayName

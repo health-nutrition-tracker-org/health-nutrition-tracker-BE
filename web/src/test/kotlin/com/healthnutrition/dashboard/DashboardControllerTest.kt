@@ -1,11 +1,10 @@
-package com.healthnutrition.dashboard.infrastructure.web
+package com.healthnutrition.dashboard
 
 import com.healthnutrition.MockMvcTest
-import com.healthnutrition.auth.infrastructure.config.SecurityConfig
-import com.healthnutrition.auth.infrastructure.security.JwtAuthFilter
-import com.healthnutrition.dashboard.usecase.DashboardUseCase
-import com.healthnutrition.dashboard.usecase.dto.DashboardDto
-import com.healthnutrition.global.util.RestDocUtil
+import com.healthnutrition.dashboard.dto.DashboardDto
+import com.healthnutrition.security.JwtAuthFilter
+import com.healthnutrition.security.SecurityConfig
+import com.healthnutrition.shared.util.RestDocUtil
 import com.ninjasquad.springmockk.MockkBean
 import io.mockk.every
 import org.junit.jupiter.api.DisplayName

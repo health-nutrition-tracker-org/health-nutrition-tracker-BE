@@ -1,12 +1,10 @@
-package com.healthnutrition.bodymetric.infrastructure.web
+package com.healthnutrition.bodymetric
 
 import com.healthnutrition.MockMvcTest
-import com.healthnutrition.auth.infrastructure.config.SecurityConfig
-import com.healthnutrition.auth.infrastructure.security.JwtAuthFilter
-import com.healthnutrition.bodymetric.domain.ActivityLevel
-import com.healthnutrition.bodymetric.infrastructure.web.dto.BodyMetricRequest
-import com.healthnutrition.bodymetric.usecase.BodyMetricUseCase
-import com.healthnutrition.global.util.RestDocUtil
+import com.healthnutrition.bodymetric.dto.BodyMetricRequest
+import com.healthnutrition.security.JwtAuthFilter
+import com.healthnutrition.security.SecurityConfig
+import com.healthnutrition.shared.util.RestDocUtil
 import com.ninjasquad.springmockk.MockkBean
 import io.mockk.every
 import org.junit.jupiter.api.DisplayName
