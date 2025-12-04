@@ -98,13 +98,17 @@ web
 ### 모듈 의존 방향
 <img width="224" height="641" alt="Image" src="https://github.com/user-attachments/assets/10a13339-e191-4e6e-a933-accb1566c3ad" />
 
-### domain
-- 핵심 비즈니스 규칙, 즉 "무엇을 해야 하는가?"을 기술하는 계층
-- 프레임워크 비의존 순수 Kotlin 객체로 구성
+### web
+- REST API 엔드포인트를 정의하는 모듈
+- 실질적인 애플리케이션 실행부
 
 ### application
-- 트랜잭션, 권한, 감사, 멱등성을 다루는 계층
+- 트랜잭션, 권한, 감사, 멱등성을 다루는 모듈
 - "언제 어떤 도메인을 호출하고, 어떤 저장소를 통해 영속화하는가"를 책임
+
+### domain
+- 핵심 비즈니스 규칙, 즉 "무엇을 해야 하는가?"을 기술하는 모듈
+- 프레임워크 비의존 순수 Kotlin 객체로 구성
 
 ### infrastructure
 - 기술 세부사항 구현부
