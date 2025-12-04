@@ -1,0 +1,42 @@
+package com.healthnutrition.food
+
+import com.healthnutrition.food.dto.FoodRequest
+import com.healthnutrition.food.dto.FoodResponse
+import org.springframework.http.ResponseEntity
+import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.RequestAttribute
+import org.springframework.web.bind.annotation.RequestBody
+import org.springframework.web.bind.annotation.RequestParam
+import org.springframework.web.bind.annotation.RestController
+
+@RestController
+class FoodController(
+	private val foodUseCase: FoodUseCase
+) {
+	@GetMapping("v1/foods")
+	fun searchFoods(
+		@RequestAttribute accountId: Long,
+		@RequestParam("keyword") keyword: String,
+		@RequestParam("page") page: Int,
+		@RequestParam("numOfRows") numOfRows: Int
+	): ResponseEntity<FoodResponse.Search> {
+		return ResponseEntity.ok(
+			FoodWebMapper.toFoodSearchResponse(
+				foodSearchDtos = foodUseCase.searchFoods(keyword, page, numOfRows)
+			)
+		)
+	}
+
+	@PostMapping("v1/foods/logs")
+	fun postFoodLogs(
+		@RequestAttribute accountId: Long,
+		@RequestBody request: FoodRequest.CreateLog
+	): ResponseEntity<Unit> {
+		foodUseCase.postFoodLogs(
+			accountId = accountId,
+			requests = FoodWebMapper.toFoodLogCreateDtos(request)
+		)
+		return ResponseEntity.ok().build()
+	}
+}
