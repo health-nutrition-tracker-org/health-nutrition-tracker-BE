@@ -42,61 +42,67 @@
 
 ---
 
-## 🗂️ 패키지 구조
+## 🗂️ 프로젝트 구조
 
 ```
-└── com
-    └── healthnutrition
-        ├── account
-        │   ├── domain
-        │   │   └── exception
-        │   ├── infrastructure
-        │   │   ├── persistence
-        │   │   └── web
-        │   │       └── dto
-        │   └── usecase
-        │       └── dto
-        ├── auth
-        │   ├── domain
-        │   ├── infrastructure
-        │   │   ├── config
-        │   │   └── security
-        │   └── usecase
-        ├── bodymetric
-        │   ├── domain
-        │   │   └── exception
-        │   ├── infrastructure
-        │   │   ├── persistence
-        │   │   └── web
-        │   │       └── dto
-        │   └── usecase
-        │       └── dto
-        ├── food
-        │   ├── domain
-        │   │   └── exception
-        │   ├── infrastructure
-        │   │   ├── external
-        │   │   │   └── dto
-        │   │   ├── persistence
-        │   │   └── web
-        │   │       └── dto
-        │   └── usecase
-        │       └── dto
-        └── global
-            ├── domain
-            ├── infrastructure
-            │   ├── config
-            │   └── persistence
-            └── usecase
+domain
+└── src
+    └── main
+        └── kotlin
+         └── com
+             └── healthnutrition
+                 ├── account
+                 ├── bodymetric
+                 ├── food
+                 └── shared
+                     └── util
+
+application
+└── src
+    └── main
+         └── kotlin
+         └── com
+             └── healthnutrition
+                 ├── account
+                 ├── bodymetric
+                 ├── dashboard
+                 ├── encryption
+                 ├── food
+                 └── jwt
+
+infrastructure
+└── src
+    └── main
+        └── kotlin
+         └── com
+             └── healthnutrition
+                 ├── account
+                 ├── bodymetric
+                 ├── config
+                 ├── encryption
+                 └── food
+    
+web
+└── src
+    └── main
+        └── kotlin
+         └── com
+             └── healthnutrition
+                 ├── account
+                 ├── bodymetric
+                 ├── dashboard
+                 ├── food
+                 └── security
 ```
 
-<img width="224" height="687" alt="Image" src="https://github.com/user-attachments/assets/fccef2df-376b-4431-8663-5be11bf1377a" />
+### 모듈 의존 방향
+<img width="224" height="641" alt="Image" src="https://github.com/user-attachments/assets/10a13339-e191-4e6e-a933-accb1566c3ad" />
 
 ### domain
 - 핵심 비즈니스 규칙, 즉 "무엇을 해야 하는가?"을 기술하는 계층
 - 프레임워크 비의존 순수 Kotlin 객체로 구성
 
-### usecase
+### application
 - 트랜잭션, 권한, 감사, 멱등성을 다루는 계층
 - "언제 어떤 도메인을 호출하고, 어떤 저장소를 통해 영속화하는가"를 책임
 
