@@ -44,6 +44,9 @@
 
 ## 🗂️ 프로젝트 구조
 
+각 레이어드 별 멀티 모듈로 구성  
+👉 [멀티 모듈 도입 이유와 도입 작업 관련 이슈](https://github.com/health-nutrition-tracker-org/health-nutrition-tracker-BE/issues/20)
+
 ```
 domain
 └── src
