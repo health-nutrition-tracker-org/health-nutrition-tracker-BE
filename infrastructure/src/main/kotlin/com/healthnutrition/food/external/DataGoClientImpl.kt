@@ -2,7 +2,7 @@ package com.healthnutrition.food.external
 
 import com.healthnutrition.food.DataGoClient
 import com.healthnutrition.food.FoodMapper
-import com.healthnutrition.food.FoodNutritionData
+import com.healthnutrition.food.FoodNutritionSearchData
 import com.healthnutrition.food.exception.FoodSearchFailException
 import com.healthnutrition.food.external.dto.DataGoClientResponse
 import org.slf4j.LoggerFactory
@@ -28,7 +28,7 @@ class DataGoClientImpl(
 		page: Int,
 		numOfRows: Int,
 		foodName: String
-	): FoodNutritionData.FoodNutrition {
+	): FoodNutritionSearchData.FoodNutritionSearch {
 		val responseNutrition = webClient.get()
 			.uri("$baseUrl/getFoodNtrCpntDbInq02?serviceKey=$apiKey&pageNo=${page}&numOfRows=${numOfRows}&type=json&FOOD_NM_KR=${foodName}")
 			.retrieve()
