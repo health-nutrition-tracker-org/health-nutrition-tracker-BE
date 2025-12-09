@@ -3,10 +3,10 @@ package com.healthnutrition.food
 import com.healthnutrition.food.external.dto.DataGoClientResponse
 
 object FoodMapper {
-	fun toNutritionData(response: DataGoClientResponse.FoodNutrition): FoodNutritionData.FoodNutrition = FoodNutritionData.FoodNutrition(
-		body = FoodNutritionData.FoodNutritionBody(
+	fun toNutritionData(response: DataGoClientResponse.FoodNutrition): FoodNutritionSearchData.FoodNutritionSearch = FoodNutritionSearchData.FoodNutritionSearch(
+		body = FoodNutritionSearchData.FoodNutritionSearchBody(
 			items = response.body.items.map {
-				FoodNutritionData.FoodNutritionBodyItem(
+				FoodNutritionSearchData.FoodNutritionSearchBodyItem(
 					foodCode = it.foodCode,
 					foodName = it.foodName,
 					foodGroupCode = it.foodGroupCode,

@@ -10,15 +10,17 @@ class AccountUseCase(
 ) {
 	@Transactional
 	fun signUp(request: AccountDto.SignUp): AccountDto.SignInResult {
-		val account = Account(email = request.email, password = request.password)
-		account.verifySignUp()
+		val account = Account(
+			email = Email(value = request.email),
+			password = PasswordHash(value = request.password)
+		)
 		account.updateLastSignIn()
 
 		val savedAccount = accountRepositoryService.save(account)
 
 		return AccountDto.SignInResult(
 			accountId = savedAccount.accountId!!,
-			email = savedAccount.email
+			email = savedAccount.email.value
 		)
 	}
 
@@ -26,12 +28,11 @@ class AccountUseCase(
 	fun signIn(request: AccountDto.SignIn): AccountDto.SignInResult {
 		val account = accountRepositoryService.getByEmailOrThrow(request.email)
 		account.verifyPassword(request.password)
-		account.updateLastSignIn()
-		accountRepositoryService.updateLastSignInAtNow(account.email)
+		accountRepositoryService.updateLastSignInAtNow(account.email.value)
 
 		return AccountDto.SignInResult(
 			accountId = account.accountId!!,
-			email = account.email
+			email = account.email.value
 		)
 	}
 }

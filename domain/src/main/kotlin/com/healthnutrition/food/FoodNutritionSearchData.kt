@@ -1,18 +1,18 @@
 package com.healthnutrition.food
 
-class FoodNutritionData {
-	data class FoodNutrition(
-		val body: FoodNutritionBody
+class FoodNutritionSearchData {
+	data class FoodNutritionSearch(
+		val body: FoodNutritionSearchBody
 	)
 
-	data class FoodNutritionBody(
-		val items: List<FoodNutritionBodyItem>,
+	data class FoodNutritionSearchBody(
+		val items: List<FoodNutritionSearchBodyItem>,
 		val numOfRows: String, // 한 페이지 결과수
 		val page: String, // 페이지 번호
 		val totalCount: String // 전체 결과 수
 	)
 
-	data class FoodNutritionBodyItem(
+	data class FoodNutritionSearchBodyItem(
 		val foodCode: String, // 식품코드
 		val foodName: String, // 식품명
 		val foodGroupCode: String, // 데이터구분코드
